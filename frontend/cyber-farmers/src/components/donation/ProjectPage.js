@@ -12,6 +12,11 @@ const ProjectPage = ({ routeToLanding, login, displayError, displayProject }) =>
         <div className="intro-large">
             <div className="intro-large__inner row__1200">
                 <div className="intro-large__title">
+
+                <br />
+                    <br />
+                    <a href="/#projects">Back to projects</a>
+
                     <h2>{displayProject.details}</h2>
                 </div>
             </div>

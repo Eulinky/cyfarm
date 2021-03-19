@@ -83,8 +83,8 @@ class ProjectList extends React.Component {
                                     <div data-aos="fade-right"  data-aos-duration="1500" className="grid-item__name">
                                         <h2 onClick={() => routeToProject(p)}>{ p.title }</h2>
                                         <p>{ p.description }</p>
-                                        <button className="donate__button" onClick={() => this.onCreate(p)}>
-                                        Create 
+                                        <button className="btn btn--primary" onClick={() => routeToProject(p)}>
+                                        View project 
                                         </button>
                                     </div>
                                     <div className="grid-item__img tilt-img" onClick={() => routeToProject(p)}>

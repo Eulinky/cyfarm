@@ -1,0 +1,148 @@
+
+/* ==========================================================================
+   portfolio generic
+   ========================================================================== */
+
+   .colourbg--acquamarine {
+      background-color:  #FFF1E5;;
+   }
+   
+   .colourbg--padding {
+      padding: 4rem 0;
+   }
+
+
+
+   /* Candy giveaway */
+
+   .feedback-form {
+      width: 100%;
+      background-color:  #FFF1E5;;
+   }
+   .feedback-form__inner {
+      width: 100%;
+      padding: 6rem;
+      position:Relative;
+      display: flex;
+
+      picture {
+         margin-right: 4rem;
+         img {
+            max-width: 500px;
+            margin-top: -10rem;
+         }
+
+         .picture--hover {
+            display: none;
+         }
+         
+         &:hover {
+            .picture--ok {
+               display: none;
+            }
+            .picture--hover {
+               display: block;
+            }
+         }
+      }
+
+      @media (max-width: 1150px) {
+         padding: 3rem 3rem;
+
+         picture {
+            img {
+               max-width: 300px;
+               margin-top: 0;
+
+            }
+         }
+      }
+
+      @media (max-width: 800px) {
+         margin-top: 12px;
+         display: block;
+         text-align:center;
+
+         h2 {
+            margin-top: 16rem;
+         }
+         
+         picture {
+            img {
+               max-width: 400px;
+               margin-top: -10rem;
+               position: Absolute;
+               left: 50%;
+               margin-left: -200px;
+            }
+         }
+      }
+   }
+
+   /* View more work */
+   .view-more-work {
+      width:100%;
+      background-color: turquoise;
+      padding: 4rem 0;
+
+      > h2 {
+         font-size: 2rem;
+         width:100%;
+         text-align:center;
+      }
+   }
+
+   .view-more-work__inner  {
+      
+      ul {
+         list-style: none;
+         width:100%;
+         margin:0;
+         padding:0;
+         display: flex;
+         flex-wrap: wrap;
+         align-items: center;
+         justify-content:Center;
+
+         li {
+            width: 22%;
+            margin: 1rem;
+            padding:1rem;
+            background-color: white;
+            border: 2rem solid  #FFF1E5;;
+
+            @media (max-width:1200px) {
+               width: 42%;
+            }
+
+            @media (max-width:501px) {
+               width: 70%;
+            }
+
+            &.is-selected {
+               opacity: 0.5;
+            }
+            
+            picture {
+               width: 150px;
+               img {
+                  width: 100%;
+                  display: block;
+                  margin-bottom: 1rem;
+               }
+            }
+
+            a {
+               width:100%;
+               display: block;
+               text-align:center;
+               font-size: 14px;
+               color: #333;
+               text-decoration: none;
+
+
+            }
+         }
+      }
+      
+   }

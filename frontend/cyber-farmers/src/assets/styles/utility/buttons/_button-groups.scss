@@ -1,0 +1,101 @@
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+    GENERIC BTN GROUP
+    You can wrap buttons in a parent called .btn-group class
+    If you need anything more then center or right alignment I suggest you create a dedicated class in your component.
+    
+
+
+    CENTER ALIGNMENT:
+    ---------------------------------------------------
+        <div class="btn-group btn-group--center">
+                <button class="">Cancel</button>
+                <button class="">Okey Doki</button>
+        </div>
+
+
+    LEFT or RIGHT ALIGNMENT:
+    ---------------------------------------------------
+        <div class="btn-group btn-group--center">
+                <button class="">Cancel</button>
+                <button class="">Okey Doki</button>
+        </div>
+
+
+
+    SPLIT: one to the left and one to the right:
+    ---------------------------------------------------
+    <div class="btn-group btn-group--split">
+            <button class="">Cancel</button>
+            <button class="">Okey Doki</button>
+    </div>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+.btn-group {
+   width: 100%;
+   display: -webkit-box;
+   display: -moz-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -ms-flex-wrap: nowrap;
+   flex-wrap: nowrap;
+   align-items: center;
+
+
+   btn {
+       margin: 1rem;
+   }
+}
+
+/* Group modifier to get two buttons center aligned */
+.btn-group--center {
+   justify-content: center;
+}
+
+/* Group modifier to get two buttons to the left */
+.btn-group--left {
+   justify-content: flex-start;
+}
+
+/* Group modifier to get two buttons to the right */
+.btn-group--right {
+   justify-content: flex-end;
+}
+
+/* Group modifier for split: 1 btn to the left, one btn to the right */
+.btn-group--split {
+
+   button, a {
+       &:first-child {
+           margin-right: auto;
+       }
+
+       &:last-child {
+           margin-left: auto;
+       }
+   }
+}
+
+/* Group modifier to set full with on mobile */
+.btn-group--fullwidth-mobbile {
+   @media(max-width: 575px){
+       .btn {
+           width: 100%;
+       }
+   }
+}
+
+
+
+/* class to align buttons */
+.btn-align--left {
+   margin-right: auto;
+}
+.btn-align--right {
+   margin-left: auto;
+}
+

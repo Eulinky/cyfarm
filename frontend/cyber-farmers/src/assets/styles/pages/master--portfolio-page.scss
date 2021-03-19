@@ -1,0 +1,89 @@
+/* ==========================================================================
+      MASTER PORTFOLIO PAGE
+============================================================================= */
+
+@import "portfolio-page/work-banner";
+@import "portfolio-page/portfolio-generic";
+// text
+@import "portfolio-page/text/intro-large";
+@import "portfolio-page/text/text-normal";
+@import "portfolio-page/text/text-title";
+@import "portfolio-page/text/text-quote";
+@import "portfolio-page/text/text-photo";
+// image
+@import "portfolio-page/images/image-full";
+// special
+@import "portfolio-page/special/carousel-1";
+@import "portfolio-page/special/carousel-2";
+@import "portfolio-page/special/conclusion-bullet";
+@import "portfolio-page/special/video";
+
+// donation widget
+@import "donate/donate";
+
+
+
+// PROJECTS BAR
+.projects-bar {
+    width: 100%;
+    padding: 1rem 0;
+    background-color: #f9f9f9;
+
+    -webkit-transition: background 1s; /* For Safari 3.1 to 6.0 */
+    transition: background 1s;
+
+    // &.make-it-sticky {
+    //     position: fixed;
+    //     top:0;
+    //     background-color: #f4f4f4;
+    //     z-index:9;
+    //     padding: 0.7rem 0;
+
+    //     .projects-bar__inner {
+    //         justify-content: center;
+
+    //         .projects-bar__prev {
+    //             margin-left: 0;
+    //             margin-right: 30px;
+    //         }
+        
+    //         .projects-bar__next {
+    //             margin-left: 30px;
+    //             margin-right: 0;
+    //         }
+    //     }
+    // }
+}
+
+.projects-bar__inner {
+    display: flex;
+}
+
+    .projects-bar__prev {
+        font-family: 'eksell';
+        margin-left: 0;
+        margin-right: auto;
+        color: #333;
+        text-decoration: none;
+        &:visited {
+            color: #333;
+        }
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .projects-bar__next {
+        font-family: 'eksell';
+        margin-left: auto;
+        margin-right: 0;
+        color: #333;
+        text-decoration: none;
+        &:visited {
+            color: #333;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }

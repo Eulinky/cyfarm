@@ -1,0 +1,2111 @@
+/* ==========================================================================
+   MAIN LAYOUT
+   ========================================================================== */
+/* ==========================================================================
+   VARIABLES
+   ========================================================================== */
+.aaaaaa {
+  background-color: REd;
+}
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0;
+}
+
+a {
+  color: brown;
+}
+
+a:visited {
+  color: brown;
+}
+
+a.btn {
+  color: white;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+  /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type="checkbox"],
+[type="radio"] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none;
+}
+
+/*! HTML5 Boilerplate v8.0.0 | MIT License | https://html5boilerplate.com/ */
+/* main.css 2.1.0 | MIT License | https://github.com/h5bp/main.css#readme */
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+html {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
+ * Customize the background color to match your design.
+ */
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+textarea {
+  resize: vertical;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+/*
+ * Hide visually and from screen readers
+ */
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  /* 1 */
+}
+
+img {
+  max-width: 100%;
+}
+
+/*
+ * Extends the .sr-only class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+.sr-only.focusable:active,
+.sr-only.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  white-space: inherit;
+  width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+.invisible {
+  visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
+
+@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: #fff !important;
+    color: #000 !important;
+    /* Black prints faster */
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+  /*
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+  pre {
+    white-space: pre-wrap !important;
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  /*
+   * Printing Tables:
+   * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
+   */
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1;
+  padding: 1rem 0;
+  z-index: 8;
+}
+
+.header__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: Center;
+      -ms-flex-align: Center;
+          align-items: Center;
+  -webkit-box-pack: Center;
+      -ms-flex-pack: Center;
+          justify-content: Center;
+}
+
+.header__inner picture.back-to-works {
+  margin-top: -25px;
+}
+
+.header__inner .header__picture-link {
+  display: block;
+  margin-right: auto;
+}
+
+.header__inner picture {
+  margin-right: auto;
+}
+
+.header__inner picture caption {
+  text-decoration: none;
+  color: #333;
+}
+
+.header__inner picture a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 0;
+  text-align: right;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.header__blob {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 50px;
+  margin-top: -20px;
+}
+
+.js-header-trigger {
+  display: block;
+  width: 130px;
+  height: 130px;
+  z-index: 99;
+  padding: 4rem;
+}
+
+/* ==========================================================================
+   HERO BANNER -- blob
+   ========================================================================== */
+.superblobber-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: Center;
+      -ms-flex-pack: Center;
+          justify-content: Center;
+}
+
+.superblobber-menu > svg {
+  opacity: 1;
+  fill: none;
+  -webkit-transform: scale(0.6);
+          transform: scale(0.6);
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  position: absolute;
+  z-index: -1;
+  border-radius: 100%;
+}
+
+.superblobber-menu .styled-menu__trigger svg {
+  fill: black;
+  stroke: black;
+}
+
+.superblobber-menu .styled-menu__trigger svg g {
+  fill: black;
+  stroke: black;
+}
+
+.superblobber-menu .styled-menu__trigger svg path {
+  fill: black;
+  stroke: black;
+}
+
+@media (hover: hover) {
+  .superblobber-menu:hover {
+    -webkit-animation: shake-vertical 26s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+    animation: shake-vertical 26s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+    cursor: pointer;
+  }
+  .superblobber-menu:hover .styled-menu__trigger svg {
+    fill: white;
+    stroke: white;
+  }
+  .superblobber-menu:hover .styled-menu__trigger svg g {
+    fill: white;
+    stroke: white;
+  }
+  .superblobber-menu:hover .styled-menu__trigger svg path {
+    fill: white;
+    stroke: white;
+  }
+  .superblobber-menu:hover > svg {
+    fill: brown;
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+  }
+}
+
+.superblobber-menu__inner {
+  width: auto;
+  text-align: right;
+  display: block;
+  position: Relative;
+  z-index: 1;
+}
+
+/* When class is toggled, menu becomes white */
+.menu-is-active .styled-menu__trigger svg {
+  fill: white;
+}
+
+.menu-is-active .styled-menu__trigger svg g {
+  fill: white;
+}
+
+/* ==========================================================================
+   tilt image effect 
+   ( move from here if works )
+   ========================================================================== */
+.tilt-img {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+/* 
+    ROW Classes to be used only for MAX-WIDTH and MOBILE PADDING
+*/
+.row__1200 {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  clear: both;
+}
+
+@media (max-width: 1200px) {
+  .row__1200 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .row__1200 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* 
+    row__1300 is only used in header to keep the logo further away from the content
+*/
+.row__1300 {
+  width: 100%;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  clear: both;
+}
+
+@media (max-width: 1200px) {
+  .row__1300 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .row__1300 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* 
+    ROW Classes to be used only for MAX-WIDTH and MOBILE PADDING
+*/
+.row__800 {
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  clear: both;
+}
+
+@media (max-width: 1200px) {
+  .row__800 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .row__800 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* 
+   Please note: 
+   Eventual background colour of this ROW should come from a different class
+*/
+.row__fullwidth {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  margin: auto;
+  *zoom: 1;
+  clear: both;
+}
+
+@media (max-width: 1200px) {
+  .row__fullwidth {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .row__fullwidth {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* BG LINES */
+.bglines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: -2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: Center;
+      -ms-flex-pack: Center;
+          justify-content: Center;
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
+}
+
+@media (max-width: 900px) {
+  .bglines {
+    opacity: 0.5;
+  }
+}
+
+.bglines > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  max-width: 1px;
+  width: 1px;
+  height: 100%;
+  background-color: #181c27;
+  margin: 4%;
+  opacity: 0.04;
+}
+
+.bglines .bglines--001 {
+  position: fixed;
+  bottom: 0px;
+  left: 1.6%;
+  max-width: 1px;
+  width: 1px;
+  height: 300px;
+  background-color: brown;
+  margin: 4%;
+  -webkit-animation: slide-top 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-top 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.bglines .bglines--001 .bglines--text {
+  content: 'research';
+  display: block;
+  color: brown;
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+  position: absolute;
+  bottom: 45%;
+  left: -90px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: 'eksell_displaylarge', 'Work Sans', Helvetica, Arial, sans-serif;
+  letter-spacing: 0.04em;
+  z-index: 1;
+}
+
+@media (max-width: 1390px) {
+  .bglines .bglines--001 {
+    display: none;
+  }
+}
+
+/* Animation for big lines */
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-4 21:8:36
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+.animate-line-1 {
+  -webkit-animation: slide-top 15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-top 15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.animate-text-1 {
+  -webkit-animation: slide-top 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-top 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+
+/**
+ * ----------------------------------------
+ * animation slide-top
+ * ----------------------------------------
+
+ @-webkit-keyframes animate-line-1 {
+    0% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+    5% {
+      -webkit-transform: translateY(-30px);
+              transform: translateY(-30px);
+    }
+    100% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+  } 
+  */
+@-webkit-keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.grey-area-wrapper {
+  width: 100%;
+  background-color: #f4f4f4;
+  display: block;
+  position: relative;
+  padding: 3rem auto;
+  margin: 0;
+}
+
+/*
+
+----------------------------
+    Hamburger ICON
+----------------------------
+
+
+    <div class="menu-wrapper">
+        <div class="hamburger-menu"></div>	  
+    </div>
+
+
+
+
+    (function () {
+	    $('.menu-wrapper').on('click', function() {
+		    $('.hamburger-menu').toggleClass('js-animate');
+	    })
+    })();
+
+*/
+.menu-wrapper {
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  padding: 10px;
+  margin-top: -25px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.hamburger-menu,
+.hamburger-menu:after,
+.hamburger-menu:before {
+  display: block;
+  width: 28px;
+  height: 2px;
+}
+
+.hamburger-menu {
+  display: block;
+  position: relative;
+  -webkit-transform: translateY(9px);
+          transform: translateY(9px);
+  background: #fff;
+  -webkit-transition: all 0ms 300ms;
+  transition: all 0ms 300ms;
+}
+
+.hamburger-menu x
+.hamburger-menu--close-trigger {
+  display: none;
+}
+
+.hamburger-menu.js-animate {
+  background: rgba(255, 255, 255, 0);
+}
+
+.hamburger-menu.js-animate .hamburger-menu--close-trigger {
+  display: block;
+  display: block;
+  position: absolute;
+  width: 40px;
+  margin-top: -20px;
+  height: 40px;
+}
+
+.hamburger-menu:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 9px;
+  background: white;
+  -webkit-transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-menu:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  background: white;
+  -webkit-transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-menu.js-animate:after {
+  top: 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-menu.js-animate:before {
+  bottom: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* For animation of the menu */
+.base-bg-menu {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.base-bg-menu.js-base-bg-menu--expanded {
+  background-color: brown;
+  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.scale-in-center {
+  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-7 8:35:6
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+/**
+ * ----------------------------------------
+ * animation scale-in-center
+ * ----------------------------------------
+ */
+@-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(140);
+    transform: scale(140);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(140);
+    transform: scale(140);
+    opacity: 1;
+  }
+}
+
+/* 
+Mobile menu
+*/
+.menu-panel {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+.menu-panel.js-animate {
+  display: block;
+}
+
+.menu-panel__inner {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: Center;
+      -ms-flex-pack: Center;
+          justify-content: Center;
+  margin-top: -100px;
+}
+
+.menu-panel__card {
+  width: 100%;
+  display: block;
+}
+
+.menu-panel__card ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: block;
+  text-align: Center;
+}
+
+.menu-panel-card__item {
+  font-size: 3rem;
+  letter-spacing: 0.01em;
+  text-align: Center;
+}
+
+.menu-panel-card__item a {
+  display: block;
+  padding: 1rem;
+  color: white;
+  text-decoration: none;
+  text-align: Center;
+}
+
+.menu-panel-card__item a:hover {
+  color: turquoise;
+}
+
+.menu-panel-card__item img {
+  position: absolute;
+  max-width: 800px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  left: 55%;
+  z-index: -10;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.shake-vertical {
+  -webkit-animation: shake-vertical 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  animation: shake-vertical 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-19 16:34:49
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+/**
+ * ----------------------------------------
+ * animation shake-vertical
+ * ----------------------------------------
+ */
+@-webkit-keyframes shake-vertical {
+  0%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  80% {
+    -webkit-transform: translateY(6.4px);
+    transform: translateY(6.4px);
+  }
+  90% {
+    -webkit-transform: translateY(-6.4px);
+    transform: translateY(-6.4px);
+  }
+}
+
+@keyframes shake-vertical {
+  0%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  80% {
+    -webkit-transform: translateY(6.4px);
+    transform: translateY(6.4px);
+  }
+  90% {
+    -webkit-transform: translateY(-6.4px);
+    transform: translateY(-6.4px);
+  }
+}
+
+/* CLOSE BUTTON */
+.menu-panel-close-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.menu-panel__close {
+  display: block;
+  width: 70px;
+  height: 70px;
+  margin-left: auto;
+  margin-top: 60px;
+  margin-right: -30px;
+  cursor: pointer;
+}
+
+.menu-panel__close img {
+  -webkit-transition: -webkit-transform .6s ease-in-out;
+  transition: -webkit-transform .6s ease-in-out;
+  transition: transform .6s ease-in-out;
+  transition: transform .6s ease-in-out, -webkit-transform .6s ease-in-out;
+}
+
+@media (max-width: 1360px) {
+  .menu-panel__close {
+    margin-right: 50px;
+  }
+}
+
+.menu-panel__close:hover img {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   aaaaa
+   ========================================================================== */
+.aaaaaa {
+  background-color: REd;
+}
+
+/* 
+Typography
+*/
+@font-face {
+  font-family: 'eksell_displaylarge';
+  src: url("typography/font/ekselldisplay-large-webfont.woff2") format("woff2"), url("typography/font/ekselldisplay-large-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.fonts-loaded body {
+  font-family: lato, sans-serif;
+}
+
+.eksell {
+  font-family: 'eksell_displaylarge', 'Work Sans', Helvetica, Arial, sans-serif;
+}
+
+html {
+  font-size: 20px;
+}
+
+@media (max-width: 800px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  background-color: white;
+  font-family: 'Work Sans', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  color: #181c27;
+}
+
+p {
+  margin-bottom: 1.15rem;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 2.75rem 0 1.05rem;
+  font-family: 'Work Sans', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.802em;
+}
+
+h2 {
+  font-size: 1.602em;
+}
+
+h3 {
+  font-size: 1.424em;
+}
+
+h4 {
+  font-size: 1.266em;
+}
+
+h5 {
+  font-size: 1.125em;
+}
+
+small, .text_small {
+  font-size: 0.889em;
+}
+
+/* ==========================================================================
+   ALL UTILITIES HERE
+   ========================================================================== */
+/* ------------------------ 
+      Button library
+  ------------------------ 
+  
+  Merge with UI pattern library colours
+
+      <a class="btn btn--primary btn--small"></a>
+
+ */
+/* Generic style button */
+.btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  outline: 0px;
+  text-decoration: none;
+  display: inline-block;
+  background-color: transparent;
+  padding: 0.9rem 1.5rem;
+  letter-spacing: 0.04em;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-transition: all 0.2s cubic-bezier(0.2, 0.5, 0, 1);
+  transition: all 0.2s cubic-bezier(0.2, 0.5, 0, 1);
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn:hover:before {
+  left: 0%;
+  right: auto;
+  width: 100%;
+}
+
+.btn:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  width: 0px;
+  z-index: -1;
+  -webkit-transition: all 0.2s cubic-bezier(0.2, 0.5, 0, 1);
+  transition: all 0.2s cubic-bezier(0.2, 0.5, 0, 1);
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+    JUST TEXT 
+ ++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.btn--text {
+  text-transform: initial;
+}
+
+.btn--text:hover {
+  color: brown;
+  text-decoration: underline;
+}
+
+.btn--text-underline {
+  text-transform: initial;
+  text-decoration: underline;
+  letter-spacing: 0.02em;
+}
+
+.btn--text-underline:hover {
+  color: brown;
+}
+
+.btn--text-uppercase {
+  text-transform: uppercase;
+  text-decoration: underline;
+  color: #242427;
+}
+
+.btn--text-uppercase:hover {
+  color: #242427;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+     PRIMARY BUTTON 
+ ++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.btn--primary {
+  color: #ffffff;
+  background: brown;
+  border-color: brown;
+}
+
+.btn--primary:hover, .btn--primary:active {
+  border-color: brown;
+  color: #fefefe;
+  background: #5c1717;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+     SECONDARY BUTTON 
+ ++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.btn--secondary {
+  color: #ffffff;
+  background: #64c7c9;
+  border-color: #64c7c9;
+}
+
+.btn--secondary:hover, .btn--secondary:active {
+  border-color: #64c7c9;
+  color: #fefefe;
+  background: #36999b;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+     ACCENT BUTTON 
+ ++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.btn--accent {
+  color: #ffffff;
+  background: #3A87FF;
+  border-color: #3A87FF;
+}
+
+.btn--accent:hover, .btn--accent:active {
+  border-color: brown;
+  color: #fefefe;
+  background: #0056dd;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+     BLACK BUTTON 
+ ++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.btn--black {
+  background-color: #242427;
+  border-color: #242427;
+  color: #ffffff;
+}
+
+.btn--black:hover {
+  background: #0c0c0c;
+}
+
+.btn--black:active {
+  background: black;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+     GREEN BUTTON 
+ ++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.btn--green {
+  background-color: green;
+  border-color: green;
+  color: #ffffff;
+}
+
+.btn--green:hover {
+  background: #004d00;
+}
+
+.btn--green:active {
+  background: #001a00;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+     GHOST BUTTON 
+ ++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.btn--ghost {
+  color: brown !important;
+  border: 1px solid #f1f1f1;
+  background-color: #f1f1f1;
+}
+
+.btn--ghost:hover {
+  border: 1px solid #b92f2f;
+  background: #f1f1f1;
+  color: #b92f2f !important;
+}
+
+.btn--ghost:active {
+  background: #b92f2f;
+  color: #ffffff !important;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+     TYPE
+ ++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.btn--rounded {
+  border-radius: 50px;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+     SIZE 
+ ++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.btn--small {
+  font-size: 0.8em;
+  padding: 8px 18px;
+}
+
+/* Support for IMG and SVG inside buttons  */
+.btn__icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  position: relative;
+  float: left;
+}
+
+.btn__icon img, .btn__icon svg {
+  max-width: 100%;
+}
+
+/* 
+     Support for icon font inside buttons 
+     btn__i btn__i--left
+ */
+.btn__i {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btn__i--left {
+  width: auto;
+  float: left;
+  margin-right: 0.5rem;
+}
+
+.btn__i--right {
+  width: auto;
+  float: right;
+  margin-left: 0.5rem;
+}
+
+/* ==========================================================================
+   aaaaa
+   ========================================================================== */
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+    GENERIC BTN GROUP
+    You can wrap buttons in a parent called .btn-group class
+    If you need anything more then center or right alignment I suggest you create a dedicated class in your component.
+    
+
+
+    CENTER ALIGNMENT:
+    ---------------------------------------------------
+        <div class="btn-group btn-group--center">
+                <button class="">Cancel</button>
+                <button class="">Okey Doki</button>
+        </div>
+
+
+    LEFT or RIGHT ALIGNMENT:
+    ---------------------------------------------------
+        <div class="btn-group btn-group--center">
+                <button class="">Cancel</button>
+                <button class="">Okey Doki</button>
+        </div>
+
+
+
+    SPLIT: one to the left and one to the right:
+    ---------------------------------------------------
+    <div class="btn-group btn-group--split">
+            <button class="">Cancel</button>
+            <button class="">Okey Doki</button>
+    </div>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.btn-group {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.btn-group btn {
+  margin: 1rem;
+}
+
+/* Group modifier to get two buttons center aligned */
+.btn-group--center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/* Group modifier to get two buttons to the left */
+.btn-group--left {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+/* Group modifier to get two buttons to the right */
+.btn-group--right {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+/* Group modifier for split: 1 btn to the left, one btn to the right */
+.btn-group--split button:first-child, .btn-group--split a:first-child {
+  margin-right: auto;
+}
+
+.btn-group--split button:last-child, .btn-group--split a:last-child {
+  margin-left: auto;
+}
+
+/* Group modifier to set full with on mobile */
+@media (max-width: 575px) {
+  .btn-group--fullwidth-mobbile .btn {
+    width: 100%;
+  }
+}
+
+/* class to align buttons */
+.btn-align--left {
+  margin-right: auto;
+}
+
+.btn-align--right {
+  margin-left: auto;
+}
+
+/* ==========================================================================
+   ATTENTION SEEKER -- loop
+   ========================================================================== */
+.shake-vertical-slow {
+  -webkit-animation: shake-vertical 20s cubic-bezier(0.455, 0.03, 0.515, 0.955) 1s infinite both;
+  animation: shake-vertical 20s cubic-bezier(0.455, 0.03, 0.515, 0.955) 1s infinite both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-6 17:45:5
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+/**
+ * ----------------------------------------
+ * animation shake-vertical
+ * ----------------------------------------
+ */
+@-webkit-keyframes shake-vertical-slow {
+  0%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  80% {
+    -webkit-transform: translateY(6.4px);
+    transform: translateY(6.4px);
+  }
+  90% {
+    -webkit-transform: translateY(-6.4px);
+    transform: translateY(-6.4px);
+  }
+}
+
+@keyframes shake-vertical {
+  0%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  80% {
+    -webkit-transform: translateY(6.4px);
+    transform: translateY(6.4px);
+  }
+  90% {
+    -webkit-transform: translateY(-6.4px);
+    transform: translateY(-6.4px);
+  }
+}
+
+.fade-in-right {
+  -webkit-animation: fade-in-right 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in-right 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+/* ==========================================================================
+   ENTRANCE ANIMATIONS
+   ========================================================================== */
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-5 18:46:53
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+/**
+ * ----------------------------------------
+ * animation fade-in-right
+ * ----------------------------------------
+ */
+@-webkit-keyframes fade-in-right {
+  0% {
+    -webkit-transform: translateX(50px);
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    -webkit-transform: translateX(50px);
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-5 18:46:53
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+/**
+ * ----------------------------------------
+ * animation fade-in-right
+ * ----------------------------------------
+ */
+@-webkit-keyframes fade-in-right {
+  0% {
+    -webkit-transform: translateX(50px);
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    -webkit-transform: translateX(50px);
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   aaaaa
+   ========================================================================== */
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* ==========================================================================
+   CONTACT ME
+   ========================================================================== */
+.contact-wrapper {
+  width: 100%;
+  display: block;
+  border-top: 1px solid #f1f1f1;
+  padding-top: 4rem;
+  padding-bottom: 8rem;
+}
+
+@media (max-width: 1200px) {
+  .contact-wrapper {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.contact-wrapper__inner {
+  text-align: center;
+}
+
+.contact-wrapper__inner h2 {
+  font-size: 6rem;
+  width: 100%;
+  letter-spacing: 0em;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 960px) {
+  .contact-wrapper__inner h2 {
+    font-size: 5rem;
+  }
+}
+
+.contact-wrapper__inner p {
+  font-size: 1.3rem;
+}
+
+.contact-wrapper__ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-wrapper__ul > li {
+  width: 50%;
+  padding: 2rem;
+  margin: 2rem;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .contact-wrapper__ul > li {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+}
+
+.contact-wrapper__ul > li a {
+  color: #181c27;
+  text-decoration: none;
+}
+
+.contact-wrapper__ul > li a p {
+  color: brown;
+  text-decoration: underline;
+}
+
+.contact-wrapper__ul > li h3 {
+  font-weight: 800;
+  font-size: 3rem;
+}
+
+.contact-wrapper__ul > li p {
+  line-height: 1.1;
+}
+
+@media (hover: hover) {
+  .contact-wrapper__ul > li:hover {
+    background-color: #f4f4f4;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-wrapper__ul {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .contact-wrapper__ul li {
+    width: 100%;
+  }
+}
+
+.honeypot-phone-number {
+  color: #181c27;
+}
+
+/* ==========================================================================
+   aaaaa
+   ========================================================================== */
+.aaaaaa {
+  background-color: REd;
+}
+/*# sourceMappingURL=master--main-style.css.map */

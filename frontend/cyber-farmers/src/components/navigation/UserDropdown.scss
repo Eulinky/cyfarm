@@ -1,0 +1,59 @@
+@import "src/assets/styles/constants.scss";
+
+.user-dropdown-container > ul > li.user-dropdown-item.menu-item-with-icon {
+  margin: 1rem 0 0 0.2rem;
+}
+
+.user-info-dropdown-content .user-dropdown-container li.user-dropdown-item.menu-item-with-icon {
+  display: block;
+}
+
+.user-dropdown-container {
+  position: relative;
+  background-color: white;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  right: -0.6rem;
+  margin-top: 1rem;
+  margin-left: -2.5rem;
+  z-index: 1;
+  cursor: pointer;
+
+  ul {
+    padding-inline-start: 0px;
+  }
+
+  li {
+    &.user-dropdown-item {
+      margin: 0 0 0 0;
+      font-weight: normal;
+      color: black;
+    }
+  }
+
+  .menu-item-icon-left {
+    height: 22px;
+    width: 22px;
+    margin: 0px 0.5rem;
+    vertical-align: text-top;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0.1rem;
+    left: 51%;
+    width: 0;
+    height: 0;
+    border: 0.6rem solid transparent;
+    border-bottom-color: white;
+    border-top: 0;
+    margin-left: 3.3rem;
+    margin-top: -0.6rem;
+
+    @media screen and (max-width: $max-mobile-width) {
+      left: 52.5%;
+    }
+  }
+}

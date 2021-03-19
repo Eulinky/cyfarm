@@ -1,0 +1,11 @@
+{
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": ".js",
+        "paths": "src/",
+        "moduleDirectory": ["node_modules/", "src/", "lib/"]
+      }
+    }
+  }
+}

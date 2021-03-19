@@ -1,0 +1,138 @@
+
+/* ==========================================================================
+   home skills
+   ========================================================================== */
+
+   .home-skills {
+      max-width: 100%;
+      display: block;
+      position:relative;
+      background-color:#111;
+      padding-bottom: 9rem;
+      overflow-x: hidden;
+
+      @media (max-width: 1215px) {
+         padding-bottom:0;
+      }
+   }
+   
+   .home-skills__inner {
+      width:100%;
+      display: block;    
+      background-color: #FFF1E5;
+      padding: 3rem;
+      position:relative;
+   }
+
+   .home-skills__ul {
+      max-width:100%;
+      width:100%;
+      margin:0;
+      padding:0;
+      list-style: none;
+
+      display: flex;
+      flex-wrap: wrap;
+   }
+
+   .home-skills__li {
+      width:50%;
+      margin:0;
+      list-style: none;
+
+      @media (max-width: 760px) {
+         width: 100%;
+
+         h2 {
+            text-decoration: underline;
+         }
+      }
+
+      h2 {
+         width:100%;
+         font-size: 2rem;
+         color: brown;
+         display: flex;
+         align-items:center;
+         padding:1rem 0;
+         margin:0;
+         position:Relative;
+
+         .arrowpointer {
+
+            &:after {
+               border-left: 2.5px solid turquoise;
+
+            }
+         }
+
+         @media (max-width: 500px) {
+            font-size: 1.8em;
+            letter-spacing:0.03em;
+         }
+         
+      }
+
+      > a {
+         width: auto;
+         display: block;
+         padding: 1rem 2rem;
+         text-decoration: none;
+         color: #181c27;
+
+
+         @media (max-width: 600px) {
+            padding:2rem 0;
+            margin: 0 auto;
+
+         }
+         
+         p {
+         text-decoration: none;
+         color: #181c27;
+         font-size: 0.9rem;
+         }
+
+
+         &:hover {
+            background-color: #FADEA8;
+            
+               .arrow-pointer {
+                  opacity: 1 !important;
+                  }
+           }
+      }
+   }
+
+
+   .arrow-pointer {
+      opacity: 0.1;
+      margin-top: 6px;
+      margin-right: 0;
+      margin-left: auto;
+      width: 40px;
+      height: 5px;
+      background: brown;
+      position: relative;
+    
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0; bottom: 0; width: 0; height: 0;
+        border-left: 2.5px solid  #FFF1E5;;
+        border-top: 2.5px solid transparent;
+        border-bottom: 2.5px solid transparent;
+      }
+    
+      &:before {
+        content: '';
+        position: absolute;
+        right: -10px;
+        bottom: -8px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid brown;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+      }
+    }

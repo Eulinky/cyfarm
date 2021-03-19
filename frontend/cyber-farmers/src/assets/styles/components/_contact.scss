@@ -1,0 +1,97 @@
+
+/* ==========================================================================
+   CONTACT ME
+   ========================================================================== */
+
+
+   .contact-wrapper {
+      width:100%;
+      display: block;
+      border-top: 1px solid #f1f1f1;
+      padding-top: 4rem;
+      padding-bottom: 8rem;
+
+      @media (max-width: 1200px) {
+         padding-top: 2rem;
+         padding-bottom: 4rem;
+      }
+   }
+
+   .contact-wrapper__inner {
+      text-align: center;
+
+      h2 {
+         font-size: 6rem;
+         width:100%;
+         letter-spacing: 0em;
+         margin:0;
+         padding:0;
+
+         @media (max-width: 960px) {
+         font-size: 5rem;
+         }
+      }
+
+      p {
+         font-size: 1.3rem;
+      }
+   }
+
+
+   .contact-wrapper__ul {
+      display: flex;
+      list-style: none;
+      margin:0;
+      padding:0;
+
+      > li {
+         width: 50%;
+         padding: 2rem;
+         margin: 2rem;
+         text-align: center;
+
+         @media (max-width: 960px) {
+            padding: 1rem;
+            margin: 0.5rem;
+            }
+
+         a {
+            color: #181c27;
+            text-decoration: none;
+            p {
+               color: brown;
+               text-decoration: underline;
+            }
+         }
+
+         h3 {
+            font-weight: 800;
+            font-size: 3rem;
+         }
+
+         p {
+            line-height: 1.1;
+         }
+
+         @media (hover: hover) {
+            &:hover {
+               background-color: #f4f4f4;
+            }
+         }
+      }
+
+
+      @media (max-width: 600px) {
+         flex-wrap: wrap;
+
+         li {
+            width:100%;
+         }
+      }
+   }
+
+
+
+   .honeypot-phone-number {
+      color: #181c27;
+   }

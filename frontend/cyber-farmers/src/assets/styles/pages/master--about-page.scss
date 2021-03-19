@@ -1,0 +1,142 @@
+
+/* ==========================================================================
+   MASTER ABOUT PAGE
+   ========================================================================== */
+   
+   @import "about-page/about-generic";   
+
+
+   /* Chess wrapper */
+   .chess-wrapper { 
+      position: fixed;
+      left: 0;
+      top:0;
+      right:0;
+      bottom:0;
+      background-color: #181c27;
+      z-index:999;
+      display: flex;
+      align-items: Center;
+      justify-content: center;
+      width:100%;
+      height:100%;
+
+      // Hidden by default:
+      display: none;
+
+      picture {
+         width: 450px;
+         margin-right: 2rem;
+         margin-bottom: 0.3rem;
+
+         img {
+            width: 100%;
+            display: block;
+            border:0;
+         }
+      }
+
+      p {
+         font-size: 1rem;
+         margin:0 0 1rem 0;
+         padding:0;
+         color: #f4f4f4;
+      }
+
+      h3 {
+         display: block;
+         width:100%;
+         font-size: 2.5rem;
+         margin:0 0 0.3rem 0;
+         padding:0;
+         color: #f4f4f4;
+
+      }
+
+      a {
+         display: block;
+         width:100%;
+         margin-top: 2rem;
+         letter-spacing: 0.03em;
+         font-weight: 400;
+         color:  #FFF1E5;;
+      }
+   }
+
+
+   .chess-wrapper__inner {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      padding: 3rem;
+      margin:auto;
+
+      > div {
+         width: 100%;
+         max-width: 400px;
+      }
+
+
+      @media (max-width: 1130px) {     
+      margin-top: 60px;
+      }
+
+      @media (max-width: 860px) {     
+         flex-wrap: wrap;
+         align-items: Center;
+         justify-content:Center;
+         text-align:Center;
+
+         > div {
+            margin: auto;
+            display: block;
+         }
+
+         picture {
+            width: 100%;
+            max-width: 100%;
+            padding:0;
+            margin:0 0 1rem 0;
+            text-align: Center;
+
+
+            img {
+               width: auto;
+               max-height: 400px;
+               margin:auto;
+            }
+         }
+
+      }
+
+      @media (max-width: 460px) {     
+         picture {
+            margin:0 2rem 1rem 2rem;
+            img {
+               max-height: 300px;
+            }
+         }
+
+      }
+
+   }
+
+   .chess-wrapper__close {
+      position: fixed;
+      top: 30px;
+      right: 80px;
+      width: 50px;
+      height: 50px;
+      display: block;
+      z-index:9;
+
+      @media (max-width: 1130px) {     
+         top: 0px;
+      }
+
+         img {
+            width:100%;
+            max-width:100%;
+         }
+
+      }

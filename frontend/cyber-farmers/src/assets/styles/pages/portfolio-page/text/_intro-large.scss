@@ -1,0 +1,111 @@
+
+/* ==========================================================================
+   Intro large
+   ========================================================================== */
+
+   .intro-large {
+      width: 100%;
+      padding: 4rem 0;
+   }
+   .intro-large__inner {
+      width:100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content:Center;
+
+      @media (max-width:1000px) {
+         flex-wrap: wrap;
+
+         .intro-large__role-and-team {
+            width:100%;
+            margin:auto;
+            display: flex;
+            > div {
+               min-width: 50%;
+               width: 50%;
+               padding: 3rem;
+               margin-top: 2rem;
+               border-top: 1px solid #333;
+               border-bottom: 1px solid #333;
+               justify-content: flex-start;
+            }
+
+         }
+      }
+      @media (max-width:505px) {
+         flex-wrap: wrap;
+
+         .intro-large__role-and-team {
+            flex-wrap: wrap;
+            > div {
+               min-width: 100%;
+               width: 100%;
+               padding: 2rem;
+               margin:0;
+               border-top:0;
+               border-bottom:0;
+               background-color: #f4f4f4;
+
+               &.intro-large__div2 {
+                  display: none;
+
+               }
+            }
+
+
+         }
+      }
+   }
+
+   .intro-large__title {
+      width: 100%;
+      max-width: 900px;
+
+      h2 {
+         font-size: 1.4rem;
+         letter-spacing: -0.01em;
+         line-height: 1.4;
+         font-weight: 200;   
+         margin-top: 0;
+      }
+
+   }
+
+   // this is optional
+   .intro-large__role-and-team {
+      display: block;
+      width: 420px;
+      margin-left: 4rem;
+      font-size: 0.8rem;
+      strong {
+         display: block;
+         width: 100%;
+         letter-spacing: 0.05em;
+         font-weight: 500;
+         color: #999;
+      }
+
+      p {
+         width: 100%;
+         display: block;
+         margin-bottom: 1rem;
+      }
+   }
+
+/* ==========================================================================
+   MAIN TITLE
+   ========================================================================== */
+
+   .main-title {
+      width: 100%;
+      text-align: center;
+      margin-top: 8rem;
+
+      h2 {
+         font-size: 4rem;
+      }
+
+      p {
+         font-size: 1rem;
+      }
+   }

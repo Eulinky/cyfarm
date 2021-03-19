@@ -1,0 +1,206 @@
+
+/* --------------------------------------------------------- 
+
+    Spinner types:
+    ---------------------
+    - .load-1
+    - .load-2
+    - .load-3
+
+    Spinner size:
+    ---------------------
+    - Default ( no additional class needed)
+    - .load--small ( smaller spinner )
+
+   
+    Spinner colours:
+    ---------------------
+    -  Default ( no additional class needed, the spinner will look brown )
+    - .load--grey
+    - .load--white
+    - .load--green
+   
+
+    USAGE EXAMPLES :
+    ---------------------------
+
+        <div class="load-1">
+                <p>Loading 1</p>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+          
+ 
+            HORIZONTAL LOADER
+          <div class="load-2 load--grey load--small">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+
+
+
+          <span className="load-2 load--grey load--small">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </span>
+
+          <div class="load-3">
+                <p>Loading 3</p>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+
+  --------------------------------------------------------- */
+
+  .line {
+    display: inline-block;
+    width: 15px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #333;
+}
+
+.load-1 .line {
+    margin: 0 3px;
+}
+.load-2 .line {
+    margin: 0 3px;
+}
+
+
+/* Animate the lines
+--------------------------------------------------------- */
+.load-1 .line:nth-last-child(1) {
+animation: loadingA 1.5s 1s infinite;
+}
+
+.load-1 .line:nth-last-child(2) {
+animation: loadingA 1.5s .5s infinite;
+}
+
+.load-1 .line:nth-last-child(3) {
+animation: loadingA 1.5s 0s infinite;
+}
+
+.load-2 .line:nth-last-child(1) {
+animation: loadingB 1.5s 1s infinite;
+}
+
+.load-2 .line:nth-last-child(2) {
+animation: loadingB 1.5s .5s infinite;
+}
+
+.load-2 .line:nth-last-child(3) {
+animation: loadingB 1.5s 0s infinite;
+}
+
+.load-3 .line:nth-last-child(1) {
+animation: loadingC .6s .1s linear infinite;
+}
+
+.load-3 .line:nth-last-child(2) {
+animation: loadingC .6s .2s linear infinite;
+}
+
+.load-3 .line:nth-last-child(3) {
+animation: loadingC .6s .3s linear infinite;
+}
+
+@keyframes loadingA {
+0% {
+    height: 15px;
+}
+
+50% {
+    height: 35px;
+}
+
+100% {
+    height: 15px;
+}
+}
+
+@keyframes loadingB {
+0% {
+    width: 15px;
+}
+
+50% {
+    width: 35px;
+}
+
+100% {
+    width: 15px;
+}
+}
+
+@keyframes loadingC {
+0% {
+    transform: translate(0,0);
+}
+
+50% {
+    transform: translate(0,15px);
+}
+
+100% {
+    transform: translate(0,0);
+}
+}
+
+/* ---------------------
+MODIFIER -- SIZE 
+Usage: class="load-1 load--small"
+*/
+
+.load--small {
+.line {
+    width: 7px;
+    margin: 2px;
+    border-radius: 8px;
+}
+}
+
+/* ---------------------
+MODIFIER -- color 
+Usage: class="load-1 load--grey"
+*/
+
+.load--grey {
+.line {
+    background-color: #cccccc;
+}
+}
+
+.load--white {
+.line {
+    background-color: #fff;
+}
+}
+
+.load--green {
+.line {
+    background-color: green;
+}
+}
+
+/* ---------------------
+MODIFIER -- POSITION 
+Usage: class="load-1 load--absolute-left"
+*/
+
+.load--absolute-left {
+position: absolute;
+left: 15px;
+
+@media (max-width:860px) {
+    position: absolute;
+    left: -6px;
+    margin-top: -8px;
+    transform: scale(0.5);
+}
+}

@@ -1,0 +1,67 @@
+
+/* ==========================================================================
+   text--quote
+   ========================================================================== */
+
+
+   .text--quote {
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      padding: 6rem 0;   
+
+      @media (max-width: 1000px) {
+         padding: 3rem auto;
+         text-align:center;
+       }
+   }
+
+   .text--quote__inner {
+      width:100%;
+      display: flex;
+      align-items: Center;
+      justify-content:Center;
+
+
+      blockquote {
+            font-size: 2.5rem;
+            font-weight: 400;
+            line-height: 1.1;
+            font-style: italic;
+            
+            // author
+            small {
+               width: 100%;
+               margin-top: 2rem;
+               display: block;
+               font-size: 1rem;
+               color: #696969;
+            }
+
+            .text--quote__icon {
+
+               -webkit-animation: shake-vertical 10s cubic-bezier(0.455, 0.030, 0.515, 0.955) 1s infinite both;
+               animation: shake-vertical 10s cubic-bezier(0.455, 0.030, 0.515, 0.955) 1s infinite both;
+ 
+               
+               max-width: 70px;
+               position: absolute;
+               left: -60px;
+               bottom: 57%;
+               @media (max-width: 1000px) {
+                  font-size: 2rem;
+                  left: 50%;
+                  bottom: initial;
+                  top: 3rem;
+                  text-align: center;
+                  margin-left: -35px;
+               }
+            }
+
+
+            @media (max-width: 1000px) {
+               font-size: 2rem;
+             }
+
+      }
+   }

@@ -1,0 +1,168 @@
+   .header {
+      position: fixed;
+      top: 0px;
+      left: 0;
+      right: 0;
+      width:100%;
+      z-index:1;
+      padding: 1rem 0;
+      z-index: 8;
+   }
+
+   .header__inner {
+      display: flex;
+      align-items:Center;
+      justify-content:Center;
+
+      picture.back-to-works {
+         // Special code for the "back" icon inside portfolio
+         margin-top: -25px;
+      }
+
+      .header__picture-link {
+         display: block;
+         margin-right: auto;
+      }
+
+      picture {
+         margin-right: auto;
+
+         caption {
+            text-decoration: none;
+            color: #333;
+         }
+
+         a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 0;
+            text-align:right;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+         }
+      }   
+   }
+
+   .header__blob {
+    width: 100%;
+    display: flex;
+   margin-right: 50px;
+   margin-top: -20px;
+   }
+
+   .js-header-trigger {
+      display: block;
+      width: 130px;
+      height: 130px;
+      z-index: 99;
+      padding: 4rem;
+   }
+
+
+
+/* ==========================================================================
+   HERO BANNER -- blob
+   ========================================================================== */
+
+   .superblobber-menu {
+      display: flex;
+      align-items: center;
+      justify-content: Center;
+      
+
+
+
+      > svg {
+         opacity: 1;
+         fill: none;
+         transform: scale(0.6);
+         transition: all 1s ease;
+
+         position: absolute;
+         z-index:-1;
+         border-radius: 100%;
+      }
+
+
+      .styled-menu__trigger {
+         svg {
+            fill: black;
+            stroke: black;
+
+         g {
+            fill: black;
+            stroke: black;
+         }
+
+         path {
+            fill: black;
+            stroke: black;
+         }
+         }
+      }
+
+
+
+      @media (hover: hover) {
+         &:hover {
+         -webkit-animation: shake-vertical 26s infinite cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+         animation: shake-vertical 26s infinite cubic-bezier(0.455, 0.030, 0.515, 0.955) both;  
+
+            .styled-menu__trigger {
+               svg {
+                  
+                  fill: white;
+                  stroke: white;
+               g {
+                  fill: white;
+                  stroke: white;
+               }
+
+               path {
+                  fill: white;
+                  stroke: white;
+               }
+               }
+
+            }
+            cursor: pointer;
+            > svg {
+               fill: brown;
+               transform: scale(0.9);
+               transition: all 1s ease;
+   
+            }
+         }
+      }
+      
+  }
+
+.superblobber-menu__inner {
+   width: auto;
+   text-align: right;
+   display: block;
+   position:Relative;
+   z-index:1;
+
+}
+
+/* When class is toggled, menu becomes white */
+
+
+
+.menu-is-active {
+
+   .styled-menu__trigger {
+
+      svg {
+         
+         fill: white;
+      g {
+         fill: white;
+         }
+      }
+   }
+}
+      

@@ -1,0 +1,136 @@
+
+/* ==========================================================================
+   ABOUT ME PAGE
+   ========================================================================== */
+
+
+   .grid__digital-product {
+      width: 100%;
+      list-style: none;
+      padding:0;
+      margin:0;
+      display: flex;
+      justify-content: center;
+      align-items:center;
+
+      > li {
+         display: block;
+         width: 30%;
+         margin: 1rem;
+
+         &:first-child, &:last-child  {
+            width: 25%;
+         }
+         
+         p {
+            font-size: 16px;
+            color: #666;
+         }
+      }
+
+
+      @media (max-width: 960px) {
+         flex-wrap: wrap;
+
+      > li {
+         display: block;
+         width: 40%;
+
+         &:first-child, &:last-child  {
+            width: 40%;
+            }
+
+         &:last-child  {
+         width: 100%;
+         }
+      }
+
+
+      @media (max-width: 800px) {
+
+      > li {
+         display: block;
+         width: 100%;
+
+         &:first-child, &:last-child  {
+            width: 100%;
+            }
+
+      }
+
+
+
+   }
+
+   }
+   }
+
+   /* PARALLAX GRID SCROLLING */
+
+   .parallax-grid {
+      width:100%;
+      display: flex;
+      align-items:center;
+      justify-content:Center;
+    }
+    
+    .parallax-grid__ul {
+      width:100%;
+      max-width: 1400px;
+      display: flex;
+      flex-wrap: Wrap;
+      align-items:center;
+      justify-content:Center;
+      list-style: none;
+      
+      > li {
+        width: 46%;
+        margin: 2%;
+        padding:0;
+        
+        img {
+          width: 100%;
+        }
+      }
+    }
+    
+    
+    .js-parallax_scroll {
+        color: #333;
+    }
+
+
+
+    .product-kindlings {
+
+      .chapter__inner {
+         margin-top: -9rem; 
+         padding-top: 4rem; 
+         padding-bottom: 4rem; 
+         background-color:  #FFF1E5;;
+      }
+
+      h2 {
+         font-size: 1.4rem;
+         letter-spacing: 0.01em;
+         margin-top: -1rem;
+         @media (max-width: 600px) {
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+         }
+
+      }
+
+      #mc_embed_signup {
+         @media (max-width: 600px) {
+            input {
+               padding: 1rem !important;
+               width:100%;
+               margin:0px !important;
+               border-radius: 0px !important;
+               text-align: center !important;
+            }
+         }
+      }
+
+    }

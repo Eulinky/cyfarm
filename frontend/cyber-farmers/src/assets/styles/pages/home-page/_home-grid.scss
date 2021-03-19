@@ -1,0 +1,151 @@
+
+/* ==========================================================================
+   GRID
+============================================================================= */
+
+.grid {
+   width: 100%;
+   position:relative;
+   padding: 4rem 0;
+}
+
+.grid__inner {
+   width: 100%;
+   position:relative;
+   overflow-x: hidden;
+}
+
+   .grid__ul { 
+      width: 100%;
+      list-style: none;
+      padding:0;
+      margin:0;
+   }
+
+   .grid-item { 
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content:Center;
+      margin-bottom: 3rem;
+   }
+
+   .grid-item__name { 
+      width: 30%;
+      padding: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content:Center;
+      z-index: 2;
+
+      > a {
+         color: #181c27;
+         text-decoration: none;
+
+         &:hover {
+            h2 {
+               text-decoration: underline;
+            }
+         }
+      }
+
+      h2 {
+         width:100%;
+         display: block;
+         // color:White;
+      }
+      p {
+         width:100%;
+         display: block;
+         // color:White;
+      }
+   }
+
+   .grid-item__img { 
+      width: 60%;
+      background-color:  #FADEA8;
+      padding: 4rem;
+
+      picture {
+         display: block;
+         width:100%;
+
+         img {
+            width:100%;
+         }
+      }
+   }
+
+
+   @media (max-width: 1400px) {
+
+      .grid-item__name { 
+         width: 50%;
+      }
+
+      .grid-item__img { 
+         width: 50%;
+         padding: 2rem;
+      }
+   
+   }
+
+   @media (max-width: 600px) {
+
+      .grid-item {
+         flex-wrap: wrap;
+      }
+      .grid-item__name { 
+         width: 100%;
+         padding: 1rem;
+         display: flex;
+         order: 2;
+         margin-top: -3rem;
+
+         h2 {
+            // text-decoration: underline;
+            letter-spacing: -0.03em;
+         }
+
+         p {
+            margin-top: -0.5rem;
+
+         }
+      }
+
+      .grid-item__img { 
+         width: 100%;
+         display: flex;
+         order: 1;
+      }
+   
+   }
+
+
+
+/* TAG */
+
+
+.work-tag {
+   width: 100%;
+
+   ul {
+      width: 100%;
+      display: block;
+      list-style: none;
+      margin:0;
+      padding:0;
+
+      li {
+         display: inline-block;
+         width: auto;
+         font-size: 14px;
+         padding: 0.2rem 1rem;
+         background-color: #f4f4f4;
+         margin: 0.5rem;
+         border-radius: 50px;
+      }
+   }
+
+}

@@ -1,0 +1,19 @@
+
+/* ==========================================================================
+   text-normal
+   ========================================================================== */
+
+   .text-normal {
+      width: 100%;
+   }
+
+   .text-normal__inner {
+      width:100%;
+      max-width: 900px;
+      display: block;
+      margin: auto;
+      @media (max-width: 820px) {
+         max-width: 100%;
+         padding: 0 2rem;
+      }
+   }

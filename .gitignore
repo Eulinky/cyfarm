@@ -19,3 +19,6 @@
 *.wasm
 
 node_modules/
+cyfarm.password
+package-lock.json
+yarn.lock

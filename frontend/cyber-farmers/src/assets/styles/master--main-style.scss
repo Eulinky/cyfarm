@@ -1,0 +1,26 @@
+
+/* ==========================================================================
+   MAIN LAYOUT
+   ========================================================================== */
+
+   // BASE
+   @import "base/variables";   
+   @import "base/normalize";   
+   @import "base/reset";   
+
+   // LAYOUT
+   @import "layout/header";   
+   @import "layout/layout";   
+   @import "layout/hamburger--icon";   
+   @import "layout/hamburger--navigation";  
+   @import "layout/footer";    
+
+   // TYPOGRAPHY
+   @import "typography/typography"; 
+
+   // UTILITY  
+   @import "utility/all-utilities";   
+
+   // COMPONENTS
+   @import "components/contact";   
+   @import "components/add-shared-components-here";   

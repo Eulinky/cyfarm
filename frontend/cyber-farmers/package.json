@@ -1,0 +1,56 @@
+{
+  "name": "cyber-farmers",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/register": "^7.13.8",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "aos": "^2.3.4",
+    "base64url": "^3.0.1",
+    "cbor": "^7.0.4",
+    "eosjs": "^21.0.3",
+    "eslint-config-react-app": "^6.0.0",
+    "express": "^4.17.1",
+    "focus-visible": "^5.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.3",
+    "react-select": "^4.2.1",
+    "ual-anchor": "^1.0.2",
+    "ual-reactjs-renderer": "^0.3.1",
+    "ual-scatter": "^0.3.0",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-plugin-jsdoc": "^32.3.0",
+    "eslint-plugin-no-exclusive-tests": "^1.0.0-rc.1",
+    "node-sass": "^5.0.0"
+  }
+}

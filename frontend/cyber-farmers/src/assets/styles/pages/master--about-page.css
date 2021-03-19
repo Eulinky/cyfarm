@@ -1,0 +1,280 @@
+/* ==========================================================================
+   MASTER ABOUT PAGE
+   ========================================================================== */
+/* ==========================================================================
+   ABOUT ME PAGE
+   ========================================================================== */
+.grid__digital-product {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.grid__digital-product > li {
+  display: block;
+  width: 30%;
+  margin: 1rem;
+}
+
+.grid__digital-product > li:first-child, .grid__digital-product > li:last-child {
+  width: 25%;
+}
+
+.grid__digital-product > li p {
+  font-size: 16px;
+  color: #666;
+}
+
+@media (max-width: 960px) {
+  .grid__digital-product {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .grid__digital-product > li {
+    display: block;
+    width: 40%;
+  }
+  .grid__digital-product > li:first-child, .grid__digital-product > li:last-child {
+    width: 40%;
+  }
+  .grid__digital-product > li:last-child {
+    width: 100%;
+  }
+}
+
+@media (max-width: 960px) and (max-width: 800px) {
+  .grid__digital-product > li {
+    display: block;
+    width: 100%;
+  }
+  .grid__digital-product > li:first-child, .grid__digital-product > li:last-child {
+    width: 100%;
+  }
+}
+
+/* PARALLAX GRID SCROLLING */
+.parallax-grid {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: Center;
+      -ms-flex-pack: Center;
+          justify-content: Center;
+}
+
+.parallax-grid__ul {
+  width: 100%;
+  max-width: 1400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: Wrap;
+      flex-wrap: Wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: Center;
+      -ms-flex-pack: Center;
+          justify-content: Center;
+  list-style: none;
+}
+
+.parallax-grid__ul > li {
+  width: 46%;
+  margin: 2%;
+  padding: 0;
+}
+
+.parallax-grid__ul > li img {
+  width: 100%;
+}
+
+.js-parallax_scroll {
+  color: #333;
+}
+
+.product-kindlings .chapter__inner {
+  margin-top: -9rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: #FFF1E5;
+}
+
+.product-kindlings h2 {
+  font-size: 1.4rem;
+  letter-spacing: 0.01em;
+  margin-top: -1rem;
+}
+
+@media (max-width: 600px) {
+  .product-kindlings h2 {
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-kindlings #mc_embed_signup input {
+    padding: 1rem !important;
+    width: 100%;
+    margin: 0px !important;
+    border-radius: 0px !important;
+    text-align: center !important;
+  }
+}
+
+/* Chess wrapper */
+.chess-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #181c27;
+  z-index: 999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: Center;
+      -ms-flex-align: Center;
+          align-items: Center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.chess-wrapper picture {
+  width: 450px;
+  margin-right: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.chess-wrapper picture img {
+  width: 100%;
+  display: block;
+  border: 0;
+}
+
+.chess-wrapper p {
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  color: #f4f4f4;
+}
+
+.chess-wrapper h3 {
+  display: block;
+  width: 100%;
+  font-size: 2.5rem;
+  margin: 0 0 0.3rem 0;
+  padding: 0;
+  color: #f4f4f4;
+}
+
+.chess-wrapper a {
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  color: #FFF1E5;
+}
+
+.chess-wrapper__inner {
+  max-width: 1200px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 3rem;
+  margin: auto;
+}
+
+.chess-wrapper__inner > div {
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (max-width: 1130px) {
+  .chess-wrapper__inner {
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 860px) {
+  .chess-wrapper__inner {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: Center;
+        -ms-flex-align: Center;
+            align-items: Center;
+    -webkit-box-pack: Center;
+        -ms-flex-pack: Center;
+            justify-content: Center;
+    text-align: Center;
+  }
+  .chess-wrapper__inner > div {
+    margin: auto;
+    display: block;
+  }
+  .chess-wrapper__inner picture {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    text-align: Center;
+  }
+  .chess-wrapper__inner picture img {
+    width: auto;
+    max-height: 400px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 460px) {
+  .chess-wrapper__inner picture {
+    margin: 0 2rem 1rem 2rem;
+  }
+  .chess-wrapper__inner picture img {
+    max-height: 300px;
+  }
+}
+
+.chess-wrapper__close {
+  position: fixed;
+  top: 30px;
+  right: 80px;
+  width: 50px;
+  height: 50px;
+  display: block;
+  z-index: 9;
+}
+
+@media (max-width: 1130px) {
+  .chess-wrapper__close {
+    top: 0px;
+  }
+}
+
+.chess-wrapper__close img {
+  width: 100%;
+  max-width: 100%;
+}
+/*# sourceMappingURL=master--about-page.css.map */

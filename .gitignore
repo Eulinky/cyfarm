@@ -15,8 +15,8 @@
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
 
-*.abi
-*.wasm
+cyfarmarket.abi
+cyfarmarket.wasm
 
 node_modules/
 cyfarm.password

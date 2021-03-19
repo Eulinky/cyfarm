@@ -14,45 +14,35 @@ The current development version can be found at https://cyfar-fe-3mtic3xe5q-ez.a
 In order to use the app you need
 
 * an Anchor wallet [installation](https://greymass.com/en/anchor/download) (iOS or Desktop)
-* registration of the private blockchain within Anchor
-* registration of users private keys (minimum for now is donor1, keys see below)
+* [registration](https://github.com/Eulinky/cyfarm/blob/main/documentation/wallet.md) of the private blockchain within Anchor
+* [registration](https://github.com/Eulinky/cyfarm/blob/main/documentation/wallet.md) of user accounts / private keys
 
-### Registration of private blockchain
-You need the private Cyber Farmers blockchain to be registered with Anchor.
-Go to *Manage Blockchains*
+## Running locally
+You can run app and blockchain locally using docker. I'll add a docker-compose later.
 
-![text](https://github.com/Eulinky/cyfarm/blob/main/documentation/anchor1.png)
+You need a common network
 
-and *Custom Blockchain*
+`docker network create cyfar`
 
-![text](https://github.com/Eulinky/cyfarm/blob/main/documentation/anchor2.png)
+### Blockchain Node
+`cd eos`
 
-Use these settings:
+`docker build -t cyfar-node .`
 
-- ChainId: 8a34ec7df1b8cd06ff4a8abbaa7cc50300823350cadc59ab296cb00d104d2b8f
-- Name: Cyber Farmers
-- Default Node: https://cyfar-node-3mtic3xe5q-ez.a.run.app
-- Default token: EOS
-- Check "This blockchain is a testnet"
+`docker run --rm -d --name cyfar-node -p 8888:8888 -p 9876:9876 --network cyfar cyfar-node`
 
-![text](https://github.com/Eulinky/cyfarm/blob/main/documentation/anchor3.png)
+### Frontend (Docker)
+`cd frontend/cyber-farmers`
 
-### Registration of Accounts (private Keys)
-To use the frontend you need registered user accounts on the blockchain. The only way to create new accounts is to use the cleos command line tool. But there are example accounts you can use:
+`docker build -t cyfar-fe:latest .`
 
-- donor1
-- farmer1
+`docker run -it -p 3001:3000 --rm --name cyfar-fe --network cyfar cyfar-fe:latest`
 
-To import these accounts into the Anchor wallet fowllow these steps:
+### Frontend (node)
+If you make changes to the frontend it's better to a local dev server. You need nodejs and yarn installed.
 
-- In Anchor go to Home Screen and click *Manage Wallets*
-- Click *Import Accounts* - *Import* - *Import Manually*
+`cd frontend/cyber-farmers`
 
-Use these settings
-- Account Name: *donor1* / *farmer1*
-- Permission Name: *active*
-- Private Key:
-    - donor1: 5Ju7dkzfejtH1t4FozUdzFDPDkRgoT5pnSrW4eRhYukUBh18idL
-    - farmer1: 5KkXYBUb7oXrq9cvEYT3HXsoHvaC2957VKVftVRuCy7Z7LyUcQB
+`yarn` or `npm install` 
 
-![text](https://github.com/Eulinky/cyfarm/blob/main/documentation/anchor4.png)
+`yarn start` or `npm run start`

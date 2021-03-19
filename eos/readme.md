@@ -30,7 +30,7 @@
                                        "sellable": true,
                                        "transferable": true,
                                        "rev_split": 0.05,
-                                       "base_uri": "https://cyberfarmers.io/cause1/bond/",
+                                       "base_uri": "https://cyberfarmers.org/cause1/bond/",
                                        "max_issue_days": 0,
                                        "max_supply": "1000 CYFAR"}' -p cyfar.token´
 
@@ -44,7 +44,7 @@
                                        "sellable": false,
                                        "transferable": true,
                                        "rev_split": 0.05,
-                                       "base_uri": "https://cyberfarmers.io/cause2/donation/",
+                                       "base_uri": "https://cyberfarmers.org/cause2/donation/",
                                        "max_issue_days": 0,
                                        "max_supply": "1000 CYFAR"}' -p cyfar.token´
                     

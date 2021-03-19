@@ -65,7 +65,7 @@ export default () => {
           sellable: true,
           transferable: true,
           rev_split: 0.05,
-          base_uri: "https://cyberfarmers.io/" + payload.projectId,
+          base_uri: "https://cyberfarmers.org/" + payload.projectId,
           max_issue_days: 0,
           max_supply: payload.amount + " CYFAR"
         }

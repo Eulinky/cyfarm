@@ -5,11 +5,11 @@ import AboutUs from './AboutUs'
 import ProjectList from './ProjectList'
 import Contact from './Contact'
 
-const LandingPage = ({ login, displayError, routeToLanding, routeToProject }) => {
+const LandingPage = ({ login, displayError, routeToProject }) => {
 
-  let [projects, setProjects] = React.useState([]) // state hook
+  let [projects, setProjects] = React.useState([])
 
-  React.useEffect(async () => {                           // side effect hook
+  React.useEffect(async () => {
     
     const resp = await fetch('/api/projects', {
       method: 'GET',

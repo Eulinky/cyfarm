@@ -22,7 +22,7 @@ export const PROJECTS = [
     {
         id: 'cause3',
         partner: 'farmer1',
-        title: 'Coffee farming in Azebarjan',
+        title: 'Coffee farming in Azerbaijan',
         description: 'coming soon.',
         details: '',
         impact: '',

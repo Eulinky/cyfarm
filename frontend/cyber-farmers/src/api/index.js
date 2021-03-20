@@ -107,8 +107,40 @@ export default () => {
     })
   })
 
-  api.get('/projects', (req, resp) => {
-    resp.json(PROJECTS)
+  api.get('/projects', async (req, resp) => {
+
+    let projects = PROJECTS
+    
+    // general token market info -> all available tokens for each project
+    let accounts = await rpc.get_table_rows({
+      json: true,
+      code: 'cyfar.token',
+      scope: 'cyfar.market',
+      table: 'accounts'
+    });
+
+    // get chain data for each project
+    projects.forEach(async (p) => {
+      
+      let dgoodstats = await rpc.get_table_rows({
+        json: true,
+        code: 'cyfar.token',
+        scope: p.id,
+        table: 'dgoodstats'
+      });
+
+      p.bondTokenInfo = dgoodstats.rows.find(dgs => dgs.token_name == "bond");
+
+      // add available supply to the token info
+      let tokenMarketInfo = accounts.rows.find(acc => acc.category == p.id && acc.token_name == "bond");
+      if(tokenMarketInfo) {
+        p.bondTokenInfo.available_supply = tokenMarketInfo.amount
+      }
+    })    
+
+    console.log(projects)
+
+    resp.json(projects)
   })
 
   return api

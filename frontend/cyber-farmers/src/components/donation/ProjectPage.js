@@ -14,7 +14,7 @@ const ProjectPage = ({ routeToLanding, login, displayError, displayProject, user
 
                 <br />
                     <br />
-                    <a href="/#projects">Back to projects</a>
+                    <a href="#" onClick={routeToLanding}>Back to projects</a>
 
                     <h2>{displayProject.details}</h2>
                 </div>

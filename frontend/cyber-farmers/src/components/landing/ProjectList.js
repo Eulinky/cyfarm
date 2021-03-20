@@ -59,6 +59,21 @@ class ProjectList extends React.Component {
         }
       }
 
+    renderCreateButton = (project) => {
+      // do not render if project has been created on the blockchain
+      return !project.bondTokenInfo ? (
+              <button className="btn btn--secondary" onClick={() => this.onCreate(project)}>
+              Create 
+              </button>) : <div />
+    }
+
+    renderTokenInfo = (project) => {
+      // do not render if project has been created on the blockchain
+      return project.bondTokenInfo ? (
+                <p>Needs {project.bondTokenInfo.available_supply.match(/(\d+)/)[0]} of {project.bondTokenInfo.issued_supply.match(/(\d+)/)[0]} EOS</p>
+            ) : <div />
+    }
+
     render = () => {
         const { projects, login, displayError, routeToProject } = this.props
 
@@ -83,8 +98,10 @@ class ProjectList extends React.Component {
                                     <div data-aos="fade-right"  data-aos-duration="1500" className="grid-item__name">
                                         <h2 onClick={() => routeToProject(p)}>{ p.title }</h2>
                                         <p>{ p.description }</p>
-                                        <button className="btn btn--primary" onClick={() => this.onCreate(p)}>
-                                        Create 
+                                        { this.renderTokenInfo(p) }
+                                        { this.renderCreateButton(p) }
+                                        <button className="btn btn--primary" onClick={() => routeToProject(p)}>
+                                        View 
                                         </button>
                                     </div>
                                     <div className="grid-item__img tilt-img" onClick={() => routeToProject(p)}>

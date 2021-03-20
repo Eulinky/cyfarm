@@ -1,5 +1,5 @@
 import React from 'react'
-import { func, shape, string, number } from 'prop-types'
+import { func, shape, string, object } from 'prop-types'
 import { withUAL, UALContext } from 'ual-reactjs-renderer'
 
 import { generateDonateTransaction, transactionConfig } from 'utils/transaction'
@@ -16,7 +16,9 @@ class DonationTile  extends React.Component {
           requiredAmount: string.isRequired
         }),
         login: func.isRequired,
-        displayError: func.isRequired
+        displayError: func.isRequired,
+        userInfo: object.isRequired,
+        setUserInfo: func.isRequired
     }
 
     state = {
@@ -25,26 +27,8 @@ class DonationTile  extends React.Component {
         donated: false
     };
 
-    async componentDidMount() {
-        this._isMounted = true
-        const { activeUser } = this.context
-        if (activeUser) {
-            const accountName = await activeUser.getAccountName()
-            await this.setUserInfo(accountName)
-        }
-    }
-
-    async setUserInfo(accountName) {
-        // get user info from chain
-          const userInfo = await getUserInfo(accountName)
-    
-          if (this._isMounted) {
-            this.setState({ userInfo })
-          }
-    }
-    
     onDonate = async () => {
-        const { login, displayError, project } = this.props
+        const { login, displayError, project, setUserInfo } = this.props
         const { activeUser } = this.context
         const { donation } = this.state
 
@@ -63,7 +47,7 @@ class DonationTile  extends React.Component {
                 await activeUser.signTransaction(transaction, transactionConfig)
 
                 this.setState({ donated: true })
-                this.setUserInfo(accountName);
+                setUserInfo(accountName);
             } 
             catch (err) {
                 displayError(err)
@@ -80,8 +64,7 @@ class DonationTile  extends React.Component {
     }
 
     renderDonationText() {
-        const { userInfo } = this.state
-        const { project } = this.props
+        const { project, userInfo } = this.props
 
         let text = "You haven't donated to this project, yet!" // <a href="#">View transaction</a>
 
@@ -99,8 +82,7 @@ class DonationTile  extends React.Component {
     }
 
     renderBondText() {
-        const { userInfo } = this.state
-        const { project } = this.props
+        const { project, userInfo } = this.props
 
         let text = "You don't own any CYFAR bonds from this project, yet!" // <a href="#">View transaction</a>
 

@@ -1,10 +1,9 @@
 import React from 'react'
-import { func, bool } from 'prop-types'
-import Header from 'components/landing/Header'
+import { func, bool, object } from 'prop-types'
 import HeroBanner from 'components/landing/HeroBanner'
 import DonationTile from './DonationTile'
 
-const ProjectPage = ({ routeToLanding, login, displayError, displayProject }) => (
+const ProjectPage = ({ routeToLanding, login, displayError, displayProject, userInfo, setUserInfo }) => (
     <div id="scroll-to-top">
         
         <HeroBanner headerText1={displayProject.title} headerText2="" showHeroButtons={false} />
@@ -22,7 +21,7 @@ const ProjectPage = ({ routeToLanding, login, displayError, displayProject }) =>
             </div>
         </div>
 
-        <DonationTile login={login} displayError={displayError} project={displayProject} />
+        <DonationTile login={login} displayError={displayError} project={displayProject} userInfo={userInfo} setUserInfo={setUserInfo} />
 
         <br />
         <div className="text--title">
@@ -43,7 +42,9 @@ const ProjectPage = ({ routeToLanding, login, displayError, displayProject }) =>
 ProjectPage.propTypes = {
     login: func.isRequired,
     displayError: func.isRequired,
-    routeToLanding: func.isRequired
+    routeToLanding: func.isRequired,
+    userInfo: object,
+    setUserInfo: func.isRequired
 }
 
 export default ProjectPage

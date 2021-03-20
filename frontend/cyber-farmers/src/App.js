@@ -8,6 +8,8 @@ import LandingPage from 'components/landing/LandingPage'
 import ProjectPage from 'components/donation/ProjectPage'
 import Header from 'components/landing/Header'
 
+import { getUserInfo } from 'utils/chain'
+
 class App extends React.Component {
   static propTypes = {
     ual: shape({
@@ -28,12 +30,21 @@ class App extends React.Component {
   state = {
     showProject: false,
     showNotificationBar: true,
-    error: null
+    error: null,
+    userInfo: { accountName: '', eosBalance: '', bondTokens: [] }
   }
 
-  componentDidUpdate(prevProps) {
-    const { ual: { error } } = this.props
-    const { ual: { error: prevError } } = prevProps
+  async componentDidUpdate(prevProps) {
+    const { ual: { error, activeUser } } = this.props
+    const { ual: { error: prevError, activeUser: prevActiveUser } } = prevProps
+
+    if (activeUser && !prevActiveUser) {
+      const accountName = await activeUser.getAccountName()
+
+      // get user info from chain
+      await this.setUserInfo(accountName)
+    }
+
     if (error && (prevError ? error.message !== prevError.message : true)) {
       console.error('UAL Error', JSON.parse(JSON.stringify(error)))
     }
@@ -49,6 +60,13 @@ class App extends React.Component {
       maxGlare: 0.2,
       scale: 1.04
     });
+  }
+
+  setUserInfo = async (accountName) => {
+    // get user info from chain
+    const userInfo = await getUserInfo(accountName)
+
+    this.setState({ userInfo })
   }
 
   displayProject = (display, project) => this.setState({ showProject: display, displayProject: project })
@@ -82,12 +100,12 @@ class App extends React.Component {
     const routeToLanding = () => this.displayProject(false)
     const routeToProject = (project) => this.displayProject(true, project)
     const hideNotificationBar = () => this.clearError()
-    const { showProject, displayProject, showNotificationBar, error } = this.state
+    const { showProject, displayProject, showNotificationBar, error, userInfo } = this.state
 
     return (
       <div className='app-container'>
         { showNotificationBar && <NotificationBar hideNotificationBar={hideNotificationBar} error={error} /> }
-        <Header routeToLanding={routeToLanding} login={login} />
+        <Header routeToLanding={routeToLanding} login={login} userInfo={userInfo} />
         { showProject ?
           (
             <ProjectPage
@@ -96,6 +114,8 @@ class App extends React.Component {
               login={login}
               displayError={this.displayError}
               displayProject={displayProject}
+              userInfo={userInfo}
+              setUserInfo={this.setUserInfo}
             />
           )
           : <LandingPage

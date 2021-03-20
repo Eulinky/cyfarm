@@ -1,5 +1,5 @@
 import React from 'react'
-import { func, bool, shape, oneOfType, instanceOf } from 'prop-types'
+import { func, bool, shape, oneOfType, instanceOf, object } from 'prop-types'
 import { withUAL } from 'ual-reactjs-renderer'
 import { AnchorUser } from 'ual-anchor'
 import UserInfo from 'components/navigation/UserInfo'
@@ -15,7 +15,8 @@ class Header extends React.Component {
             ]),
             }),
         routeToLanding: func.isRequired,
-        login: func.isRequired
+        login: func.isRequired,
+        userInfo: object
     }
 
     componentDidMount() {
@@ -28,7 +29,7 @@ class Header extends React.Component {
     }
 
     render() {
-        const { ual: { activeUser }, routeToLanding, login } = this.props
+        const { ual: { activeUser }, routeToLanding, login, userInfo } = this.props
 
        return (
             <header className="header">
@@ -40,7 +41,7 @@ class Header extends React.Component {
         
                 <div>
                 { activeUser
-                  ? <div className='user-info'><UserInfo /></div>
+                  ? <div className='user-info'><UserInfo userInfo={userInfo} /></div>
                   : <div className='login'><LoginButton login={login} /></div>
                 }
                 </div>

@@ -12,24 +12,7 @@ class UserInfo extends React.Component {
   _isMounted = false
 
   state = {
-    showDropdown: false,
-    accountName: '',
-    userInfo: {}
-  }
-
-  async componentDidMount() {
-    this._isMounted = true
-    const { activeUser } = this.context
-    if (activeUser) {
-      const accountName = await activeUser.getAccountName()
-
-      // get user info from chain
-      const userInfo = await getUserInfo(accountName)
-
-      if (this._isMounted) {
-        this.setState({ accountName, userInfo })
-      }
-    }
+    showDropdown: false
   }
 
   componentWillUnmount() {
@@ -61,7 +44,7 @@ class UserInfo extends React.Component {
 
   renderDropdown = () => {
     const { logout } = this.context
-    const { userInfo } = this.state
+    const { userInfo } = this.props
 
     return (
       <div className='user-info-dropdown-content'>
@@ -72,13 +55,13 @@ class UserInfo extends React.Component {
 
   render() {
     const { logout, isAutoLogin } = this.context
-    const { accountName, userInfo } = this.state
-    //const shouldDisplayLogout = logout && !isAutoLogin
+    const { userInfo } = this.props
+
     const shouldDisplayLogout = logout
     return (
       <div className={`user-info-container ${shouldDisplayLogout ? '' : 'user-info-hide-dropdown'}`}>
         <span className='user-info-prefix'> Signed in as </span>
-        <div className='user-info-name'>{accountName}</div>
+        <div className='user-info-name'>{userInfo.accountName}</div>
         <div className='user-info-name'>{userInfo.eosBalance}</div>
         { shouldDisplayLogout && this.renderLogout() }
       </div>

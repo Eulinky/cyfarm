@@ -28,6 +28,7 @@ export const getUserInfo = async (accountName) => {
     let tokenInfo = bondTokenResult.rows.map(r => ({ id: r.category, amount: r.amount, text: `${r.category}: ${r.amount}` }))
 
     const userInfo = {
+        accountName,
         eosBalance: eos != null ? eos.balance : "No Data",
         bondTokens: tokenInfo
     }

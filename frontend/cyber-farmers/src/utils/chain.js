@@ -27,11 +27,27 @@ export const getUserInfo = async (accountName) => {
 
     let tokenInfo = bondTokenResult.rows.map(r => ({ id: r.category, amount: r.amount, text: `${r.category}: ${r.amount}` }))
 
+    // redeemed vouchers
+    let dgoods = await rpc.get_table_rows({
+        json: true,                 // Get the response as json
+        code: 'cyfar.token',        // Contract that we target
+        scope: 'cyfar.token',         // Account that owns the data
+        table: 'dgood',           // Table name
+        limit: -1
+    })
+
+    let user_dgoods = dgoods.rows.filter(dg => dg.owner == accountName)
+    console.log(dgoods)
+
+    // create result
     const userInfo = {
         accountName,
         eosBalance: eos != null ? eos.balance : "No Data",
-        bondTokens: tokenInfo
+        bondTokens: tokenInfo,
+        goods: user_dgoods
     }
 
     return userInfo
 }
+
+export const amountOf = (asset) => asset.match(/(\d+)/)[0]

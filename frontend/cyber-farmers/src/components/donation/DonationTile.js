@@ -99,6 +99,37 @@ class DonationTile  extends React.Component {
         )
     }
 
+    renderRedemption() {
+        const { project, userInfo } = this.props
+        
+        if(!project.redeemableCompTokens) {
+            return (
+                <div className="donate__wrap">
+                    <p>The project does not offer any compensation at the moment.</p>
+                </div>
+            )
+        }
+
+        const userBondTokens = userInfo.bondTokens.find(t => t.id == project.id)
+
+        // if project has comp tokens on offer and user owns bond tokens
+        if(userBondTokens) {
+            return (
+                <div>
+                    <h3>You can redeem your bond tokens for these offers:</h3>
+                    {
+                        project.redeemableCompTokens.map(t => 
+                            <div>
+                                <p>{t.dgood_ids.length} vouchers for {t.amount} each. Redeem!</p>
+                            </div>
+                        )
+                    }
+                </div>
+            )
+        }
+        
+    }
+
     render() {
 
         const { donation } = this.state
@@ -128,7 +159,8 @@ class DonationTile  extends React.Component {
                         Donate 
                         </button>
 
-                    </div>  
+                    </div>
+                    {this.renderRedemption() }
                 </div>
             </div>
         )

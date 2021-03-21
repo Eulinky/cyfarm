@@ -11,7 +11,8 @@ class [[eosio::contract("cyfarmarket")]] cyfarmarket : public contract
 
         cyfarmarket (name receiver, name code, datastream<const char*> ds) :
             contract(receiver, code, ds),
-            bonds_tbl(get_self(), get_self().value)
+            bonds_tbl(get_self(), get_self().value),
+            comp_tbl(get_self(), get_self().value)
             {}
 
         static constexpr name marketAccount = "cyfar.market"_n;
@@ -23,6 +24,15 @@ class [[eosio::contract("cyfarmarket")]] cyfarmarket : public contract
 
         // compensation tokens
         static constexpr name voucherTokenName = "voucher"_n;
+
+        // offer compensation to donor
+        ACTION compensate(const name& from, const name& category, const name& token_name, const int64_t token_amount, const asset& unit_price);
+
+        // exchange bond tokens for compensation tokens
+        ACTION redeem(const name& donor, const name& category, const name& token_name, const int64_t token_amount);
+
+        // confirm that a compensation has taken place
+        ACTION endorse(const name& donor, const name& category, const name& token_name);
 
         void handle_donation(const name& from, const name& to, const asset& quantity, const std::string& memo);
         void handle_token_transfer(const name& from, const name& to, const name& category, const name& token_name, const asset& quantity, const std::string& memo);
@@ -38,6 +48,19 @@ class [[eosio::contract("cyfarmarket")]] cyfarmarket : public contract
 
         using bonds_tbl_type = multi_index<"bonds"_n, bonds_record>;
         bonds_tbl_type bonds_tbl;
+
+        TABLE comp_record {
+            
+            name category;
+            name token_name;
+            int64_t available_tokens;
+            asset unit_price;
+            
+            uint64_t primary_key() const { return category.value + token_name.value; }
+        };
+
+        using comp_tbl_type = multi_index<"comp"_n, comp_record>;
+        comp_tbl_type comp_tbl;
 
         TABLE dgoodstats {
             bool           fungible;

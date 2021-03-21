@@ -17,6 +17,8 @@
 
 cyfarmarket.abi
 cyfarmarket.wasm
+cyfartoken.abi
+cyfartoken.wasm
 
 node_modules/
 cyfarm.password

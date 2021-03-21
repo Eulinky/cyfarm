@@ -139,3 +139,36 @@ void cyfarmarket::handle_donation_transfers(const name& from, const name& catego
         )
     ).send();
 }
+
+void cyfarmarket::compensate(const name& farmer, const name& category, const name& token_name, const int64_t token_amount, const asset& unit_price)
+{
+    require_auth(farmer);
+
+    // check that unit price symbol is bond
+    // check that category exists and belongs to the farmer
+
+    // ensure that the business still has uncompensated bonds
+
+    // create token if not existing already
+    // issue compensation tokens to the market
+
+    
+
+    // save the token, available amount and the price 
+
+    
+}
+
+void cyfarmarket::redeem(const name& donor, const name& category, const name& token_name, const int64_t token_amount)
+{
+    require_auth(donor);
+
+    // check that donor has bond tokens for that category
+    // check that compensation tokens for that cause are available
+    // check that there are enough compensation tokens available
+}
+
+void cyfarmarket::endorse(const name& donor, const name& category, const name& token_name)
+{
+    require_auth(donor);
+}

@@ -12,7 +12,7 @@ Use these settings:
 
 - ChainId: 8a34ec7df1b8cd06ff4a8abbaa7cc50300823350cadc59ab296cb00d104d2b8f
 - Name: Cyber Farmers
-- Default Node: https://cyfar-node-3mtic3xe5q-ez.a.run.app
+- Default Node: https://node.cyberfarmer.org (old address https://cyfar-node-3mtic3xe5q-ez.a.run.app)
 - Default token: EOS
 - Check "This blockchain is a testnet"
 

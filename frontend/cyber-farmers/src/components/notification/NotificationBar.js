@@ -2,8 +2,6 @@ import React from 'react'
 import { func, instanceOf } from 'prop-types'
 import './NotificationBar.scss'
 
-import { onKeyUpEnter } from 'utils/keyPress'
-
 const NotificationBar = ({ hideNotificationBar, error }) => (
   error ? (
   <div className={`notification-bar-container ${error ? 'notification-error' : ''}`}>
@@ -27,7 +25,6 @@ const NotificationBar = ({ hideNotificationBar, error }) => (
         onClick={hideNotificationBar}
         role='button'
         tabIndex={0}
-        onKeyUp={e => onKeyUpEnter(e, hideNotificationBar)}
       >
         &times;
       </div>

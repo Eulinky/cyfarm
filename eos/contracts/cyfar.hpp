@@ -3,41 +3,32 @@
 
 using namespace eosio;
 
-class [[eosio::contract("cyfarmarket")]] cyfarmarket : public contract
+class [[eosio::contract("cyfar")]] cyfar : public contract
 {
     public:
 
         using contract::contract;
 
-        cyfarmarket (name receiver, name code, datastream<const char*> ds) :
-            contract(receiver, code, ds),
-            bonds_tbl(get_self(), get_self().value)
-            {}
+        cyfar (name receiver, name code, datastream<const char*> ds) :
+            contract(receiver, code, ds) {}
 
-        static constexpr name marketAccount = "cyfar.market"_n;
         static constexpr name tokenAccount = "cyfar.token"_n;
 
         static constexpr name bondTokenName = "bond"_n;
-        static constexpr name donationTokenName = "donation"_n;
         static constexpr symbol tokenSymbol = symbol(symbol_code("CYFAR"), 0);
 
-        // compensation tokens
-        static constexpr name voucherTokenName = "voucher"_n;
-
         void handle_donation(const name& from, const name& to, const asset& quantity, const std::string& memo);
-        void handle_token_transfer(const name& from, const name& to, const name& category, const name& token_name, const asset& quantity, const std::string& memo);
 
-        TABLE bonds_record {
+        TABLE donation_record {
             
-            name founder;
             name category;
-            asset available_bonds;
+            name donor;
+            asset amount;
             
             uint64_t primary_key() const { return category.value; }
         };
 
-        using bonds_tbl_type = multi_index<"bonds"_n, bonds_record>;
-        bonds_tbl_type bonds_tbl;
+        using donation_tbl_type = multi_index<"donation"_n, donation_record>;
 
         TABLE dgoodstats {
             bool           fungible;

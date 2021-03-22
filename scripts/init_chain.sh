@@ -48,7 +48,7 @@ echo "#!/bin/bash" > "./$deploy_account_script_name"
 echo "" >> "./$deploy_account_script_name"
 
 create_account "cyfar.token"
-create_account "cyfar.market"
+create_account "cyfar"
 create_account "business1"
 create_account "donor1"
 
@@ -59,8 +59,8 @@ chmod +x "./$deploy_account_script_name"
 echo $wallet_pw > /home/eule/projects/cyber-farmers/$wallet_name.password
 #cp ~/eosio-wallet/./$wallet_name.wallet $wallet_path
 
-# Add code permission to cyfar.market account
-cleos set account permission cyfar.market active --add-code
+# Add code permission to cyfar account
+cleos set account permission cyfar active --add-code
 
 # Deploy cyberfarmer.token contract
 cleos set contract cyfar.token ~/projects/dgoods/build/dgoods/ dgoods.wasm dgoods.abi

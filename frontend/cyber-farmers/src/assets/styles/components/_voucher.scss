@@ -1,0 +1,24 @@
+
+/* ==========================================================================
+   aaaaa
+   ========================================================================== */
+
+   .voucher {
+      display: flexbox;
+      width: 300px;
+      background-color: white;
+      border: 1px solid;
+      margin: 5px;
+      padding: 5px;
+   }
+
+      .voucher_count {
+         font-weight: bold;
+         font-size: larger;
+      }
+      .voucher_title {
+         font-weight: bold;
+      }
+      .voucher_details {
+         font-size: small;
+      }

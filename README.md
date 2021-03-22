@@ -9,6 +9,7 @@ A detailed problem description and why bond tokens / assets can help to solve it
 
 ## Cloud installation
 The current development version can be found at https://cyfar-fe-3mtic3xe5q-ez.a.run.app/
+Updated by Alex: https://www.cyberfarmer.org
 
 ## Requirements
 In order to use the app you need

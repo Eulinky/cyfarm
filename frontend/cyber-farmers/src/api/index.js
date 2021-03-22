@@ -2,7 +2,10 @@ import { Router, json } from 'express'
 import { Api, JsonRpc } from 'eosjs';
 import { JsSignatureProvider } from 'eosjs/dist/eosjs-jssig'
 
+import { generateCreateTokenTransaction, generateIssueTokenTransaction } from '../utils/transaction'
+
 import {PROJECTS} from './staticProjects'
+import {VOUCHERS} from './staticVouchers'
 
 export default () => {
 
@@ -10,11 +13,13 @@ export default () => {
   const api = Router()
   const fetch = require('node-fetch')
 
-  const users = {}
-
   const signatureProvider = new JsSignatureProvider([privateKeyTokenContract])
   const rpc = new JsonRpc(`${process.env.REACT_APP_RPC_PROTOCOL}://${process.env.API_RPC_HOST}:${process.env.REACT_APP_RPC_PORT}`, { fetch })
   const eosApi = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() })
+  const defaultConfig = {
+    blocksBehind: 3,
+    expireSeconds: 30,
+  }
 
   api.post('/createProject', json(), async (req, resp) => {
     const payload = req.body
@@ -22,10 +27,7 @@ export default () => {
     // check if bond token already exists
     let dgoodstats = await get_dgoodstats(payload.projectId)
 
-    console.log(dgoodstats)
-
     if(dgoodstats.rows.find(t => t.token_name == "bond")) {
-      console.log("Project already exists")
       resp.json({
         status: 'error',
         message: 'Project already exists'
@@ -33,62 +35,18 @@ export default () => {
       return
     }
 
-    // save the project
+    // save the project to some database
    
 
     // create project specific tokens
-    const createResult = await eosApi.transact({
-      actions: [{
-        account: 'cyfar.token',
-        name: 'create',
-        authorization: [{
-          actor: 'cyfar.token',
-          permission: 'active',
-        }],
-        data: {
-          issuer: "cyfar.token", 
-          rev_partner: payload.partner,
-          category: payload.projectId,
-          token_name: "bond",
-          fungible: true,
-          burnable: true,
-          sellable: true,
-          transferable: true,
-          rev_split: 0.05,
-          base_uri: "https://cyberfarmers.org/" + payload.projectId,
-          max_issue_days: 0,
-          max_supply: payload.amount + " CYFAR"
-        }
-      }]
-    }, {
-      blocksBehind: 3,
-      expireSeconds: 30,
-    })
+    const createTokenTransaction = generateCreateTokenTransaction(payload.partner, payload.projectId, "bond", payload.amount + " CYFAR")
+    const createResult = await eosApi.transact(createTokenTransaction, defaultConfig)
 
     console.dir(createResult)
 
     // issue bond tokens directly to the market
-    const issueResult = await eosApi.transact({
-      actions: [{
-        account: 'cyfar.token',
-        name: 'issue',
-        authorization: [{
-          actor: 'cyfar.token',
-          permission: 'active',
-        }],
-        data: {
-          to: "cyfar.market",
-          category: payload.projectId,
-          token_name: "bond",
-          quantity: payload.amount + " CYFAR",
-          relative_uri: "",
-          memo: "Ready for Donation"
-        }
-      }]
-    }, {
-      blocksBehind: 3,
-      expireSeconds: 30,
-    })
+    const issueTokenTransaction = generateIssueTokenTransaction("cyfar", payload.projectId, "bond", payload.amount + " CYFAR", "Ready for Donation")
+    const issueResult = await eosApi.transact(issueTokenTransaction, defaultConfig)
 
     console.dir(issueResult)
 
@@ -97,15 +55,39 @@ export default () => {
     })
   })
 
+
+
+
+
+  api.post('/compToken', json(), async (req, resp) => {
+    const payload = req.body
+
+    // create project specific tokens
+    const createTokenTransaction = generateCreateTokenTransaction(payload.accountName, payload.projectId, payload.token_name, payload.count + " CYFAR", false)
+    const createResult = await eosApi.transact(createTokenTransaction, defaultConfig)
+
+    // issue bond tokens directly to the market
+    const issueTokenTransaction = generateIssueTokenTransaction(payload.accountName, payload.projectId, payload.token_name, payload.count + " CYFAR", "Ready for Donation")
+    const issueResult = await eosApi.transact(issueTokenTransaction, defaultConfig)
+
+    resp.json({
+      status: 'ok',
+    })
+  })
+
+
+
+
+
   api.get('/projects', async (req, resp) => {
 
     let projects = PROJECTS
     
     // general token market info -> all available tokens for each project
-    let marketAccounts = await get_accounts("cyfar.market")
+    let marketAccounts = await get_accounts("cyfar")
 
     // get chain data for each project
-    projects.forEach(async (p) => {
+    await Promise.all(projects.map(async (p) => {
       
       // dgoodstats table
       let dgoodstats = await get_dgoodstats(p.id)
@@ -120,16 +102,45 @@ export default () => {
         }
       }
       
-      // dgood table -> all existing nfts (comp tokens) for this cause
-      let cause_comps = await get_dgoods(p.id)
-      p.existingCompTokens = cause_comps.rows
-
       // asks table -> all redeemable nfts (comp tokens) for this cause
-      let market_comps = await get_asks(p.id);
-      let market_comps_by_cause = market_comps.rows.filter(comp => comp.category == p.id)
-      p.redeemableCompTokens = market_comps_by_cause
+      const market_goods = await get_asks()
+
+      // dgood table -> all existing nfts (comp tokens) for this cause
+      const cause_goods = await get_dgoods(p.id, p.partner)
+
+      // find offerable project tokens: offerable == in dgood but not in asks
+      let unofferd_cause_goods = cause_goods.filter(g => market_goods.rows.find(mg => mg.batch_id == g.id) == null)
+      p.existingCompTokens = unofferd_cause_goods
+      // enrich with voucher data
+      p.existingCompTokens.map(t => {
+        t.voucher = getVoucher(t.category, t.token_name)
+      })
+
+      // filter tokens on offer to project specfic
+      let market_goods_by_cause = market_goods.rows.filter(mg => cause_goods.filter(cg => cg.id == mg.batch_id).length > 0)
+
+      // get the project id from the goods
+      market_goods_by_cause = market_goods.rows.map(mg => {
+        const good = cause_goods.find(g => g.id == mg.batch_id)
+
+        if(!good) {
+          return mg
+        }
+
+        mg.projectId = good.category
+        mg.token_name = good.token_name
+
+        // enrich market tokens with (currently static) voucher data 
+        mg.voucher = getVoucher(good.category, good.token_name)
+        
+        return mg
+      })
+
+      
+      
+      p.redeemableCompTokens = market_goods_by_cause
       p.redeemableAmount = 0
-      market_comps_by_cause.map(row => {
+      market_goods_by_cause.map(row => {
         p.redeemableAmount += row.dgood_ids.length * amountOf(row.amount)
       })
       
@@ -140,11 +151,13 @@ export default () => {
       if(partnerBonds) {
         p.redeemedAmount = partnerBonds.amount
       }
-    })    
-
-    console.log(projects)
+    }))
 
     resp.json(projects)
+  })
+
+  api.get('/vouchers', async (req, resp) => {
+    resp.json(VOUCHERS)
   })
 
   const get_dgoodstats = async (scope) => rpc.get_table_rows({
@@ -154,38 +167,31 @@ export default () => {
     table: 'dgoodstats'
   })
 
-  // query comps table to see whats on offer for this 
-  // const get_comps = async () => rpc.get_table_rows({
-  //   json: true,
-  //   code: 'cyfar.token',
-  //   scope: 'cyfar.token',
-  //   table: 'comps'
-  // })
-
-  const get_asks = async (category) => ({
-    rows: [
-      {
-        dgood_ids: [101,102,103,104,105,106],
-        amount: "5 CYFAR",
-        seller: "farmer1",
-        category: "cause1",
-        expiration: "1970-01-01T00:00:00"
-      }
-    ]
+  const get_asks = async ()  => rpc.get_table_rows({
+    json: true,
+    code: 'cyfar.token',
+    scope: 'cyfar.token',
+    table: 'asks',
+    limit: -1
   })
 
-  const get_dgoods = async (category) => ({
-    rows:[
-      { id: 100, serial_number: "1", owner: "farmer1", category: "cause1", token_name: "voucher1", relative_url: "" },
-      { id: 101, serial_number: "2", owner: "farmer1", category: "cause1", token_name: "voucher1", relative_url: "" },
-      { id: 102, serial_number: "3", owner: "farmer1", category: "cause1", token_name: "voucher1", relative_url: "" },
-      { id: 103, serial_number: "4", owner: "farmer1", category: "cause1", token_name: "voucher1", relative_url: "" },
-      { id: 104, serial_number: "5", owner: "farmer1", category: "cause1", token_name: "voucher1", relative_url: "" },
-      { id: 105, serial_number: "6", owner: "farmer1", category: "cause1", token_name: "voucher1", relative_url: "" },
-      { id: 106, serial_number: "7", owner: "farmer1", category: "cause1", token_name: "voucher1", relative_url: "" },
-      { id: 107, serial_number: "8", owner: "farmer1", category: "cause1", token_name: "voucher1", relative_url: "" },
-    ]
-  }) 
+  const get_dgoods = async (category, owner) => {
+    const data = await rpc.get_table_rows({
+      json: true,
+      code: 'cyfar.token',
+      scope: 'cyfar.token',
+      table: 'dgood',
+      limit: -1
+    })
+
+    let rows = data.rows.filter(r => r.category == category)
+
+    if(owner) {
+      rows = rows.filter(r => r.owner == owner)
+    }
+
+    return rows
+  }  
 
   const get_accounts = (scope) => rpc.get_table_rows({
     json: true,
@@ -195,6 +201,16 @@ export default () => {
   })
 
   const amountOf = (asset) => asset.match(/(\d+)/)[0]
+
+  const getVoucher = (category, token_name) => {
+    let v = VOUCHERS.find(v => v.projectId == category && v.id == token_name)
+
+    if(v)
+      return v
+
+    // default fallback as long as we have no database
+    return VOUCHERS[0]
+  }
 
   return api
 }

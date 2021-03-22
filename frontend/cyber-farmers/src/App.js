@@ -31,7 +31,8 @@ class App extends React.Component {
     showProject: false,
     showNotificationBar: true,
     error: null,
-    userInfo: { accountName: '', eosBalance: '', bondTokens: [] }
+    userInfo: { accountName: '', eosBalance: '', bondTokens: [] },
+    projects: []
   }
 
   async componentDidUpdate(prevProps) {
@@ -50,7 +51,37 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
+  async setProjects() {
+    const resp = await fetch('/api/projects', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+  
+    const projects = await resp.json()
+    this.setState({ projects })
+  }
+
+  async projectChanged(project) {
+
+    const resp = await fetch('/api/projects', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+  
+    const projects = await resp.json()
+    //this.setState({ projects })
+
+    return projects.find(p => p.id == project.id)
+  }
+
+  async componentDidMount() {
+
+    await this.setProjects()
+
     $(".tilt-img").tilt({
       maxTilt: 15,
       perspective: 1400,
@@ -70,7 +101,6 @@ class App extends React.Component {
   }
 
   displayProject = (display, project) => this.setState({ showProject: display, displayProject: project })
-
   displayNotificationBar = display => this.setState({ showNotificationBar: display })
 
   displayLoginModal = (display) => {
@@ -100,7 +130,7 @@ class App extends React.Component {
     const routeToLanding = () => this.displayProject(false)
     const routeToProject = (project) => this.displayProject(true, project)
     const hideNotificationBar = () => this.clearError()
-    const { showProject, displayProject, showNotificationBar, error, userInfo } = this.state
+    const { projects, showProject, displayProject, showNotificationBar, error, userInfo } = this.state
 
     return (
       <div className='app-container'>
@@ -111,6 +141,7 @@ class App extends React.Component {
             <ProjectPage
               routeToLanding={routeToLanding}
               routeToProject={routeToProject}
+              projectChanged={this.projectChanged}
               login={login}
               displayError={this.displayError}
               displayProject={displayProject}
@@ -119,6 +150,7 @@ class App extends React.Component {
             />
           )
           : <LandingPage
+              projects={projects}
               routeToLanding={routeToLanding}
               routeToProject={routeToProject}
               login={login}

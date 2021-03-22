@@ -3,10 +3,10 @@ import { bool, func, object } from 'prop-types'
 
 import { UALContext } from 'ual-reactjs-renderer'
 
+import { groupTokenByName } from 'utils/helpers'
+
 import './UserDropdown.scss'
 import logoutIcon from 'assets/images/leave.svg'
-
-import { onKeyUpEnter } from 'utils/keyPress'
 
 class UserDropdown extends React.Component {
   static propTypes = {
@@ -16,6 +16,38 @@ class UserDropdown extends React.Component {
 
   static contextType = UALContext
 
+  renderBondTokenInfo() {
+    const { userInfo } = this.props
+
+    return (
+      <div>
+        <div style={{fontWeight: 'bold'}}>Bond Tokens</div>
+        { userInfo.bondTokens.map(bt => (
+          <div key={bt.id}>
+            {bt.text}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  renderGoods() {
+    const { userInfo } = this.props
+
+    const goodsByName = groupTokenByName(userInfo.goods)
+
+    return (
+      <div>
+        <div style={{fontWeight: 'bold'}}>Vouchers</div>
+        { Object.getOwnPropertyNames(goodsByName).map(goodName => (
+          <div key={goodName}>
+            {goodsByName[goodName].length} x {goodName}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   render() {
     const { logout, userInfo } = this.props
     return (
@@ -24,18 +56,13 @@ class UserDropdown extends React.Component {
         tabIndex={0}
         role='menuitem'
       >
+        { this.renderBondTokenInfo() }
+        { this.renderGoods() }
         <ul>
-          { userInfo.bondTokens.map(bt => (
-            <li className='user-dropdown-item' key={bt.id}>
-              {bt.text}
-            </li>
-          ))}
-
           <li
             className='user-dropdown-item menu-item-with-icon'
             aria-label='Logout'
             onClick={logout}
-            onKeyUp={event => onKeyUpEnter(event, logout)}
           >
             <img src={logoutIcon} className='menu-item-icon-left' alt='' />
             Logout

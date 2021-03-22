@@ -8,8 +8,8 @@ SYSTEM_ACCOUNT_PUBLIC_KEY="EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
 TOKEN_ACCOUNT_PRIVATE_KEY="5KKJnVF6xtmBqo5CP3j1b9GnpyRxbH9Mzft4jTrob7sdZ9CKYrm"
 TOKEN_ACCOUNT_PUBLIC_KEY="EOS6tUtRBRVXpBgh8WRUXPbEHQXWAhK9ab4BwGdfDhKK5gGbUdVzu"
 
-MARKET_ACCOUNT_PRIVATE_KEY="5Jh6jf9g1UzcWrMMsgqd5GrTCgzeKkh5yT7EUZbiU7wB7k4Ayx1"
-MARKET_ACCOUNT_PUBLIC_KEY="EOS6bRs6knaaHyvpVXd5EgAPoxrZkkeDv89M1jidHCt86W5rkwr1q"
+CYFAR_ACCOUNT_PRIVATE_KEY="5Jh6jf9g1UzcWrMMsgqd5GrTCgzeKkh5yT7EUZbiU7wB7k4Ayx1"
+CYFAR_ACCOUNT_PUBLIC_KEY="EOS6bRs6knaaHyvpVXd5EgAPoxrZkkeDv89M1jidHCt86W5rkwr1q"
 
 FARMER_ACCOUNT_PRIVATE_KEY="5KkXYBUb7oXrq9cvEYT3HXsoHvaC2957VKVftVRuCy7Z7LyUcQB"
 FARMER_ACCOUNT_PUBLIC_KEY="EOS6TWM95TUqpgcjYnvXSK5kBsi6LryWRxmcBaULVTvf5zxkaMYWf"
@@ -165,15 +165,16 @@ issue_eos_tokens
 
 # cyfar.token (dgoods)
 create_account cyfar.token $TOKEN_ACCOUNT_PUBLIC_KEY $TOKEN_ACCOUNT_PRIVATE_KEY
-deploy_contract dgoods cyfar.token
+deploy_contract cyfartoken cyfar.token
+cleos set account permission cyfar.token active --add-code
 
 # publish CYFAR bond token symbol
 cleos push action cyfar.token setconfig '{"symbol": "CYFAR", "version": "1.0"}' -p cyfar.token@active
 
-# cyfar.market
-create_account cyfar.market $MARKET_ACCOUNT_PUBLIC_KEY $MARKET_ACCOUNT_PRIVATE_KEY
-deploy_contract cyfarmarket cyfar.market
-cleos set account permission cyfar.market active --add-code
+# cyfar
+create_account cyfar $CYFAR_ACCOUNT_PUBLIC_KEY $CYFAR_ACCOUNT_PRIVATE_KEY
+deploy_contract cyfar cyfar
+cleos set account permission cyfar active --add-code
 
 # farmer
 create_account farmer1 $FARMER_ACCOUNT_PUBLIC_KEY $FARMER_ACCOUNT_PRIVATE_KEY
@@ -184,6 +185,37 @@ cleos transfer eosio donor1 "1000.0000 EOS"
 
 # publish CYFAR bond token symbol
 cleos push action cyfar.token setconfig '{"symbol": "CYFAR", "version": "1.0"}' -p cyfar.token@active
+
+
+
+
+# ===== create bond token for farmer1::cause1
+cleos push action cyfar.token create '{"issuer": "cyfar.token", "rev_partner": "farmer1", "category": "cause1", "token_name": "bond", "fungible": true, "burnable": true, "sellable": true, "transferable": true,"rev_split": 0.0, "base_uri": "https://cyberfarmers.org/cause1/bond/", "max_issue_days": 0, "max_supply": "1000 CYFAR"}' -p cyfar.token@active
+cleos push action cyfar.token issue '{"to": "cyfar", "category": "cause1", "token_name": "bond", "quantity": "1000 CYFAR", "relative_uri": "", "memo": "Ready for donation!"}' -p cyfar.token
+
+# ===== create voucher token for farmer1::cause1
+cleos push action cyfar.token create '{"issuer": "cyfar.token", "rev_partner": "farmer1", "category": "cause1", "token_name": "voucher1", "fungible": false, "burnable": false, "sellable": true, "transferable": true, "rev_split": 0.0, "base_uri": "https://cyberfarmers.org/cause1/comp/", "max_issue_days": 0, "max_supply": "100 CYFAR"}' -p cyfar.token
+cleos push action cyfar.token issue '{"to": "farmer1", "category": "cause1", "token_name": "voucher1", "quantity": "50 CYFAR", "relative_uri": "", "memo": "Vouchers for later compensation!"}' -p cyfar.token
+
+# put some vouchers on the market
+cleos push action cyfar.token listredeem '{"seller": "farmer1", "dgood_ids": [1], "sell_by_days": "0", "net_sale_amount": "5 CYFAR"}' -p farmer1@active
+cleos push action cyfar.token listredeem '{"seller": "farmer1", "dgood_ids": [2], "sell_by_days": "0", "net_sale_amount": "5 CYFAR"}' -p farmer1@active
+cleos push action cyfar.token listredeem '{"seller": "farmer1", "dgood_ids": [3], "sell_by_days": "0", "net_sale_amount": "5 CYFAR"}' -p farmer1@active
+cleos push action cyfar.token listredeem '{"seller": "farmer1", "dgood_ids": [4], "sell_by_days": "0", "net_sale_amount": "5 CYFAR"}' -p farmer1@active
+cleos push action cyfar.token listredeem '{"seller": "farmer1", "dgood_ids": [5], "sell_by_days": "0", "net_sale_amount": "5 CYFAR"}' -p farmer1@active
+cleos push action cyfar.token listredeem '{"seller": "farmer1", "dgood_ids": [6], "sell_by_days": "0", "net_sale_amount": "5 CYFAR"}' -p farmer1@active
+cleos push action cyfar.token listredeem '{"seller": "farmer1", "dgood_ids": [7], "sell_by_days": "0", "net_sale_amount": "5 CYFAR"}' -p farmer1@active
+cleos push action cyfar.token listredeem '{"seller": "farmer1", "dgood_ids": [8], "sell_by_days": "0", "net_sale_amount": "5 CYFAR"}' -p farmer1@active
+cleos push action cyfar.token listredeem '{"seller": "farmer1", "dgood_ids": [9], "sell_by_days": "0", "net_sale_amount": "5 CYFAR"}' -p farmer1@active
+cleos push action cyfar.token listredeem '{"seller": "farmer1", "dgood_ids": [10], "sell_by_days": "0", "net_sale_amount": "5 CYFAR"}' -p farmer1@active
+
+# donate 20 EOS to a cause to get bond tokens
+cleos transfer donor1 cyfar "20.0000 EOS" "cause1" -p donor1@active
+cleos transfer donor1 cyfar "5.0000 EOS" "cause1" -p donor1@active
+
+# redeem 5 CYFAR for one voucher
+cleos push action cyfar.token buynft '{"from": "donor1", "to": "cyfar.token", "quantity": "5 CYFAR", "memo": "1,donor1"}' -p donor1@active
+
 
 echo "All done initializing the blockchain"
 

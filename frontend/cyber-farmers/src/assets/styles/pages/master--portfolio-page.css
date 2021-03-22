@@ -893,12 +893,12 @@
   padding: 3rem;
 }
 
-.donate h2 {
-  width: 100%;
-  text-align: Center;
-  padding: 0;
-  margin: 0 auto 0.5rem auto;
-}
+  h2 {
+    width: 100%;
+    text-align: Center;
+    padding: 0;
+    margin: 0 auto 0.5rem auto;
+  }
 
 .donate__wrap {
   width: 100%;

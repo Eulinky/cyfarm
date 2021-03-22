@@ -11,11 +11,26 @@ class ProjectPage extends React.Component {
         displayError: func.isRequired,
         routeToLanding: func.isRequired,
         userInfo: object,
-        setUserInfo: func.isRequired
+        setUserInfo: func.isRequired,
+        displayProject: object.isRequired,
+        projectChanged: func.isRequired
+    }
+
+    state = {
+        displayProject: this.props.displayProject
+    }
+
+    async projectChanged(props, project) {
+        const { projectChanged } = props
+
+        let updatedProject = await projectChanged(project)
+        
+        this.setState({displayProject: updatedProject})
     }
 
     render() {
-        const { routeToLanding, login, displayError, displayProject, userInfo, setUserInfo } = this.props
+        const { routeToLanding, login, displayError, userInfo, setUserInfo } = this.props
+        const { displayProject } = this.state
 
         return (
             <div id="scroll-to-top">
@@ -35,9 +50,19 @@ class ProjectPage extends React.Component {
                     </div>
                 </div>
 
-                <DonationTile login={login} displayError={displayError} project={displayProject} userInfo={userInfo} setUserInfo={setUserInfo} />
+                <DonationTile login={login} 
+                              displayError={displayError} 
+                              project={displayProject} 
+                              userInfo={userInfo} 
+                              setUserInfo={setUserInfo} 
+                              projectChanged={project => this.projectChanged(this.props, project)} />
                 <br />
-                <CompensationTile login={login} displayError={displayError} project={displayProject} userInfo={userInfo} />
+                <CompensationTile login={login} 
+                                  displayError={displayError}
+                                  project={displayProject}
+                                  userInfo={userInfo}
+                                  setUserInfo={setUserInfo} 
+                                  projectChanged={project => this.projectChanged(this.props, project)} />
 
                 <br />
                 <div className="text--title">

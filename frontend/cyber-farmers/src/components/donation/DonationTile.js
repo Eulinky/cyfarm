@@ -3,7 +3,7 @@ import { func, shape, string, object } from 'prop-types'
 import { withUAL, UALContext } from 'ual-reactjs-renderer'
 
 import { generateDonateTransaction, transactionConfig } from 'utils/transaction'
-import { getUserInfo } from 'utils/chain'
+import Redemption from './Redemption'
 
 class DonationTile  extends React.Component {
 
@@ -18,7 +18,8 @@ class DonationTile  extends React.Component {
         login: func.isRequired,
         displayError: func.isRequired,
         userInfo: object.isRequired,
-        setUserInfo: func.isRequired
+        setUserInfo: func.isRequired,
+        projectChanged: func.isRequired
     }
 
     state = {
@@ -42,12 +43,11 @@ class DonationTile  extends React.Component {
                     project.id,
                     donation)
                 
-                console.log(transaction)
 
                 await activeUser.signTransaction(transaction, transactionConfig)
 
                 this.setState({ donated: true })
-                setUserInfo(accountName);
+                setUserInfo(accountName)
             } 
             catch (err) {
                 displayError(err)
@@ -70,78 +70,30 @@ class DonationTile  extends React.Component {
 
         if(userInfo) 
         {
-            let bondTokens = userInfo.bondTokens.find(t => t.id == project.id)
-            if (bondTokens) {
-                text = "You donated " + bondTokens.amount.match(/(\d+)/)[0] + " EOS to this project."
+            let donations = userInfo.donations.find(d => d.category == project.id)
+            if (donations) {
+                text = "You donated " + donations.amount + " to this project."
             }
         }
 
         return (
             <p className="donate__p">{ text }</p>
         )
-    }
-
-    renderBondText() {
-        const { project, userInfo } = this.props
-
-        let text = "You don't own any CYFAR bonds from this project, yet!" // <a href="#">View transaction</a>
-
-        if(userInfo) 
-        {
-            let bondTokens = userInfo.bondTokens.find(t => t.id == project.id)
-            if (bondTokens) {
-                text = "You own " + bondTokens.amount + " bonds from this project."
-            }
-        }
-
-        return (
-            <p className="donate__p">{ text }</p>
-        )
-    }
-
-    renderRedemption() {
-        const { project, userInfo } = this.props
-        
-        if(!project.redeemableCompTokens) {
-            return (
-                <div className="donate__wrap">
-                    <p>The project does not offer any compensation at the moment.</p>
-                </div>
-            )
-        }
-
-        const userBondTokens = userInfo.bondTokens.find(t => t.id == project.id)
-
-        // if project has comp tokens on offer and user owns bond tokens
-        if(userBondTokens) {
-            return (
-                <div>
-                    <h3>You can redeem your bond tokens for these offers:</h3>
-                    {
-                        project.redeemableCompTokens.map(t => 
-                            <div>
-                                <p>{t.dgood_ids.length} vouchers for {t.amount} each. Redeem!</p>
-                            </div>
-                        )
-                    }
-                </div>
-            )
-        }
-        
     }
 
     render() {
 
         const { donation } = this.state
+        const { login, displayError, project, userInfo, setUserInfo, projectChanged } = this.props
 
         return (
             <div className="row__1200">
                 <div className="donate">
 
-                    <h2>Support Zazib with her project:</h2>
+                    <h2>{project.supportSlogan}</h2>
+                    <p style={{fontSize: 'small', color: 'red', textAlign: 'center'}}>TODO: Restrict to non-project creators (aka donors)</p>
 
                     {this.renderDonationText()}
-                    {this.renderBondText()}
 
                     <div className="donate__wrap">
 
@@ -160,7 +112,8 @@ class DonationTile  extends React.Component {
                         </button>
 
                     </div>
-                    {this.renderRedemption() }
+                    
+                    <Redemption login={login} displayError={displayError} project={project} userInfo={userInfo} setUserInfo={setUserInfo} projectChanged={projectChanged}  />
                 </div>
             </div>
         )

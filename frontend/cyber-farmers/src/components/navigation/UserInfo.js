@@ -5,7 +5,6 @@ import './UserInfo.scss'
 import UserDropdown from './UserDropdown'
 import downArrow from 'assets/images/down-arrow.svg'
 import upArrow from 'assets/images/up-arrow.svg'
-import { onKeyUpEnter } from 'utils/keyPress'
 import { getUserInfo } from 'utils/chain'
 
 class UserInfo extends React.Component {
@@ -34,7 +33,6 @@ class UserInfo extends React.Component {
         tabIndex={0}
         role='button'
         onClick={this.toggleDropdown}
-        onKeyUp={event => onKeyUpEnter(event, this.toggleDropdown)}
       >
         <img src={this.state.showDropdown ? upArrow : downArrow} alt='dropdown' />
       </div>

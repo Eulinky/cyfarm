@@ -1,0 +1,20 @@
+.stats_box {
+   display: flexbox;
+   width: 300px;
+   background-color: white;
+   border: 1px solid;
+   margin: 5px;
+   padding: 5px;
+}
+
+   .stats_header {
+      font-size: medium;
+   }
+
+   .stats_text {
+      font-size: larger;
+   }
+
+   .stats_details {
+      font-size: small;
+   }

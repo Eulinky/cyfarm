@@ -15,7 +15,8 @@
         "portfolio-page/special/_carousel-2.scss",
         "portfolio-page/special/_conclusion-bullet.scss",
         "portfolio-page/special/_video.scss",
-        "donate/_donate.scss"
+        "donate/_donate.scss",
+        "compensate/_compensate.scss"
     ],
     "names": [],
     "file": "master--portfolio-page.css"

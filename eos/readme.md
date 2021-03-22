@@ -2,12 +2,12 @@
 
 ### Initiate wallet and accounts
 * cyfar.token account
-* cyfar.market account
+* cyfar account
 * farmer1 account
 * donor1 account
 
-### Add code permission to cyfar.market account
-`cleos set account permission cyfar.market active --add-code`
+### Add code permission to cyfar account
+`cleos set account permission cyfar active --add-code`
 
 ### Deploy cyberfarmer.token contract
 
@@ -27,7 +27,7 @@
                                        "burnable": true,
                                        "sellable": true,
                                        "transferable": true,
-                                       "rev_split": 0.05,
+                                       "rev_split": 0.0,
                                        "base_uri": "https://cyberfarmers.org/cause1/bond/",
                                        "max_issue_days": 0,
                                        "max_supply": "1000 CYFAR"}' -p cyfar.token`
@@ -41,13 +41,13 @@
                                        "burnable": false,
                                        "sellable": false,
                                        "transferable": true,
-                                       "rev_split": 0.05,
+                                       "rev_split": 0.0,
                                        "base_uri": "https://cyberfarmers.org/cause1/comp/",
                                        "max_issue_days": 0,
                                        "max_supply": "100 CYFAR"}' -p cyfar.token`
                     
 ### Issue the bond tokens to the market
-`cleos push action cyfar.token issue '{"to": "cyfar.market",
+`cleos push action cyfar.token issue '{"to": "cyfar",
                                       "category": "cause1",
                                       "token_name": "bond",
                                       "quantity": "1000 CYFAR",
@@ -55,15 +55,15 @@
                                       "memo": "Ready for donation!"}' -p cyfar.token`
 
 ### Issue the compensation tokens to the farmer to put them later on market
-`cleos push action cyfar.token issue '{"to": "cyfar.market",
+`cleos push action cyfar.token issue '{"to": "farmer1",
                                       "category": "cause1",
                                       "token_name": "voucher1",
                                       "quantity": "50 CYFAR",
                                       "relative_uri": "",
                                       "memo": "Vouchers for later compensation!"}' -p cyfar.token`
 
-### Check that token has been issued to cyfar.market
-`cleos get table cyfar.token cyfar.market accounts`
+### Check that token has been issued to cyfar
+`cleos get table cyfar.token cyfar accounts`
 
 # Donation Phase                                            
 
@@ -72,7 +72,7 @@
 
 ### Donate by sending EOS to the market, specifying the target in the memo!
 `cleos push action eosio.token transfer '{"from": "donor1",
-                                            "to": "cyfar.market",
+                                            "to": "cyfar",
                                             "quantity": "5.0000 EOS",
                                             "memo": "cause1"}' -p donor1@active`
 
@@ -87,7 +87,7 @@
 
 ### Transfer some compensation tokens to the market so that donors can choose a compensation
 ´cleos push action cyfar.token transferft '{"from": "farmer1",
-                                            "to": "cyfar.market",
+                                            "to": "cyfar",
                                             "category": "cause1",
                                             "token_name": "voucher",
                                             "quantity": "500 CYFAR",

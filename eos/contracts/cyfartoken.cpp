@@ -311,6 +311,56 @@ ACTION cyfartoken::listsalenft(const name& seller,
     });
 }
 
+ACTION cyfartoken::listredeem(const name& seller,
+                           const vector<uint64_t>& dgood_ids,
+                           const uint32_t sell_by_days,
+                           const asset& net_sale_amount) {
+    require_auth( seller );
+
+    time_point_sec expiration = time_point_sec(0);
+
+    if ( sell_by_days != 0 ) {
+        uint32_t sell_by_seconds = sell_by_days * 24 * 3600;
+        expiration = time_point_sec(current_time_point()) + sell_by_seconds;
+    }
+
+    check (dgood_ids.size() <= 20, "max batch size of 20");
+    
+    check( net_sale_amount.symbol == symbol( symbol_code("CYFAR"), 0), "only accept CYFAR for redemption" );
+
+    dgood_index dgood_table( get_self(), get_self().value );
+    for ( auto const& dgood_id: dgood_ids ) {
+        const auto& token = dgood_table.get( dgood_id, "token does not exist" );
+
+        stats_index stats_table( get_self(), token.category.value );
+        const auto& dgood_stats = stats_table.get( token.token_name.value, "dgood stats not found" );
+
+        check( dgood_stats.sellable == true, "not sellable");
+        check ( seller == token.owner, "not token owner");
+
+        // make sure token not locked;
+        lock_index lock_table( get_self(), get_self().value );
+        auto locked_nft = lock_table.find( dgood_id );
+        check(locked_nft == lock_table.end(), "token locked");
+
+        // add token to lock table
+        lock_table.emplace( seller, [&]( auto& l ) {
+            l.dgood_id = dgood_id;
+        });
+    }
+
+    ask_index ask_table( get_self(), get_self().value );
+    // add batch to table of asks
+    // set id to the first dgood being listed, if only one being listed, simplifies life
+    ask_table.emplace( seller, [&]( auto& a ) {
+        a.batch_id = dgood_ids[0];
+        a.dgood_ids = dgood_ids;
+        a.seller = seller;
+        a.amount = net_sale_amount;
+        a.expiration = expiration;
+    });
+}
+
 ACTION cyfartoken::closesalenft(const name& seller,
                             const uint64_t& batch_id) {
     ask_index ask_table( get_self(), get_self().value );
@@ -329,7 +379,7 @@ ACTION cyfartoken::closesalenft(const name& seller,
     ask_table.erase( ask );
 }
 
-void cyfartoken::buynft(const name& from,
+ACTION cyfartoken::buynft(const name& from,
                     const name& to,
                     const asset& quantity,
                     const string& memo) {
@@ -338,8 +388,22 @@ void cyfartoken::buynft(const name& from,
     // don't allow spoofs
     if ( to != get_self() ) return;
     if ( from == name("eosio.stake") ) return;
-    check( quantity.symbol == symbol( symbol_code("EOS"), 4), "Buy only with EOS" );
+    
     check( memo.length() <= 32, "memo too long" );
+
+    auto eos_payment = quantity.symbol == symbol( symbol_code("EOS"), 4);
+    auto bond_payment = quantity.symbol == symbol( symbol_code("CYFAR"), 0);
+
+    name category = "none"_n;
+    if(bond_payment) {
+        account_index account_table( get_self(), from.value );
+        auto idx = account_table.get_index<name("bytoken")>();
+        auto token_itr = idx.find(name("bond").value);
+        check(token_itr != idx.end(), "buyer does not own bond tokens");
+        check(token_itr->amount.amount >= quantity.amount, "not enough tokens in account");
+        category = token_itr->category;
+    }
+    
 
     //memo format comma separated
     //batch_id,to_account
@@ -349,6 +413,7 @@ void cyfartoken::buynft(const name& from,
 
     ask_index ask_table( get_self(), get_self().value );
     const auto& ask = ask_table.get( batch_id, "cannot find listing" );
+    check( quantity.symbol == ask.amount.symbol, "symbols don't match");
     check ( ask.amount.amount == quantity.amount, "send the correct amount");
     check ( ask.expiration == time_point_sec(0) || ask.expiration > time_point_sec(current_time_point()), "sale has expired");
 
@@ -356,19 +421,37 @@ void cyfartoken::buynft(const name& from,
     _changeowner( ask.seller, to_account, ask.dgood_ids, "bought by: " + to_account.to_string(), false);
 
     // amounts owed to all parties
-    map<name, asset> fee_map = _calcfees(ask.dgood_ids, ask.amount, ask.seller);
-    for(auto const& fee : fee_map) {
-        auto account = fee.first;
-        auto amount = fee.second;
+    if( eos_payment ) {
+        map<name, asset> fee_map = _calcfees(ask.dgood_ids, ask.amount, ask.seller);
+        for(auto const& fee : fee_map) {
+            auto account = fee.first;
+            auto amount = fee.second;
 
-        // if seller is contract, no need to send EOS again
-        if ( account != get_self() ) {
-            // send EOS to account owed
-            action( permission_level{ get_self(), name("active") },
-                    name("eosio.token"), name("transfer"),
-                    make_tuple( get_self(), account, amount, string("sale of dgood") ) ).send();
+            // if seller is contract, no need to send EOS again
+            if ( account != get_self() ) {
+                // send EOS to account owed
+                action( permission_level{ get_self(), name("active") },
+                        name("eosio.token"), name("transfer"),
+                        make_tuple( get_self(), account, amount, string("sale of dgood") ) ).send();
+            }
         }
     }
+    else {
+        action(
+            permission_level { from, "active"_n },
+            get_self(),
+            "transferft"_n,
+            std::make_tuple(
+                from,      // from
+                ask.seller,  // to
+                category,  // category
+                "bond"_n,  // token_name
+                quantity,  // quantity
+                std::string("Bonds in return for compensation. Well done!")
+            )
+        ).send();
+    }
+    
 
     // remove locks, remove from ask table
     lock_index lock_table( get_self(), get_self().value );
@@ -575,10 +658,9 @@ extern "C" {
 
         if ( code == self ) {
             switch( action ) {
-                EOSIO_DISPATCH_HELPER( cyfartoken, (setconfig)(create)(issue)(burnnft)(burnft)(transfernft)(transferft)(listsalenft)(closesalenft)(logcall)(freezemaxsup) )
+                EOSIO_DISPATCH_HELPER( cyfartoken, (setconfig)(create)(issue)(burnnft)(burnft)(transfernft)(transferft)(listsalenft)(listredeem)(closesalenft)(buynft)(logcall)(freezemaxsup) )
             }
         }
-
         else {
             if ( code == name("eosio.token").value && action == name("transfer").value ) {
                 execute_action( name(receiver), name(code), &cyfartoken::buynft );

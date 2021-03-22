@@ -53,7 +53,7 @@ CONTRACT cyfartoken: public contract {
                       const uint64_t& category_name_id,
                       const asset& quantity);
 
-        void buynft(const name& from, const name& to, const asset& quantity, const string& memo);
+        ACTION buynft(const name& from, const name& to, const asset& quantity, const string& memo);
 
         ACTION transfernft(const name& from,
                            const name& to,
@@ -68,6 +68,11 @@ CONTRACT cyfartoken: public contract {
                           const string& memo);
 
         ACTION listsalenft(const name& seller,
+                           const vector<uint64_t>& dgood_ids,
+                           const uint32_t sell_by_days,
+                           const asset& net_sale_amount);
+
+        ACTION listredeem(const name& seller,
                            const vector<uint64_t>& dgood_ids,
                            const uint32_t sell_by_days,
                            const asset& net_sale_amount);
@@ -161,11 +166,13 @@ CONTRACT cyfartoken: public contract {
             asset amount;
 
             uint64_t primary_key() const { return category_name_id; }
+            uint64_t get_token() const { return token_name.value; }
         };
 
         using config_index = singleton< "tokenconfigs"_n, tokenconfigs >;
 
-        using account_index = multi_index< "accounts"_n, accounts >;
+        using account_index = multi_index< "accounts"_n, accounts,
+            indexed_by< "bytoken"_n, const_mem_fun<accounts, uint64_t, &accounts::get_token> > >;
 
         using category_index = multi_index< "categoryinfo"_n, categoryinfo>;
 

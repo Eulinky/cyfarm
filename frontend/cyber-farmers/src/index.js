@@ -20,7 +20,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 AOS.init();
 
-const appName = 'Cyber Farmers'
+const appName = 'CyberFarmers'
 
 // Chains
 const chain = {
@@ -36,7 +36,7 @@ const chain = {
 
 // Authenticators
 const anchor = new Anchor([chain], {
-  appName: 'Cyber Farmers',
+  appName,
   rpc: new JsonRpc(`${process.env.REACT_APP_RPC_PROTOCOL}://${process.env.REACT_APP_RPC_HOST}:${process.env.REACT_APP_RPC_PORT}`),
   service: 'https://cb.anchor.link',
   disableGreymassFuel: false,
@@ -45,7 +45,7 @@ const anchor = new Anchor([chain], {
 const scatter = new Scatter([chain], { appName })
 
 const supportedChains = [chain]
-const supportedAuthenticators = [anchor]
+const supportedAuthenticators = [anchor, scatter]
 
 ReactDOM.render(
   <UALProvider chains={supportedChains} authenticators={supportedAuthenticators} appName={appName}>

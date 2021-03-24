@@ -47,7 +47,7 @@ class DonationTile  extends React.Component {
                 await activeUser.signTransaction(transaction, transactionConfig)
 
                 this.setState({ donated: true })
-                setUserInfo(accountName)
+                setUserInfo(activeUser)
             } 
             catch (err) {
                 displayError(err)

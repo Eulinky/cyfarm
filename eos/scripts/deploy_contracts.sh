@@ -4,6 +4,15 @@ set -m
 SYSTEM_ACCOUNT_PRIVATE_KEY="5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3"
 SYSTEM_ACCOUNT_PUBLIC_KEY="EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV"
 
+EOSIO_TOKEN_ACCOUNT_PRIVATE_KEY="5KTP54vJVMBx1nKFHgkziULVSXLdMmWR2FFiSPAuyoA9craU7Rv"
+EOSIO_TOKEN_ACCOUNT_PUBLIC_KEY="EOS5hwoFmW2do6WjaXAJDmTiFAvGYXvUpj532P3FXdJmKTV7MWeS3"
+
+REX_TOKEN_ACCOUNT_PRIVATE_KEY="5KU8nomv5ouVGoWL8t41Fsjv1yu5gDSNWFqskpmwdFBnSCuiuEs"
+REX_TOKEN_ACCOUNT_PUBLIC_KEY="EOS5DmM3zdzUSADWzB2AkRnAPAuxoPD2y1pEXFyhd9RUHnyj5a35E"
+
+RAM_TOKEN_ACCOUNT_PRIVATE_KEY="5KbhpRjW2brcUTjJ68CktLwWcVpU3LjE9oHP4VXa8hZVs9RmVk4"
+RAM_TOKEN_ACCOUNT_PUBLIC_KEY="EOS5rP1ZkqZ9uL5Z3RJ1BfFyg51iP9nizrqkm8LStYDXnKN5AnLrV"
+
 # example accounts for test only
 TOKEN_ACCOUNT_PRIVATE_KEY="5KKJnVF6xtmBqo5CP3j1b9GnpyRxbH9Mzft4jTrob7sdZ9CKYrm"
 TOKEN_ACCOUNT_PUBLIC_KEY="EOS6tUtRBRVXpBgh8WRUXPbEHQXWAhK9ab4BwGdfDhKK5gGbUdVzu"
@@ -97,20 +106,16 @@ function deploy_contract {
 
 # $1 - parent folder where smart contract directory is located
 # $2 - smart contract name
-# $3 - account name
+# $3 - version
 function deploy_eos_contract {
   # Unlock the wallet, ignore error if already unlocked
   cleos wallet unlock --password $(cat "$CONFIG_DIR"/keys/default_wallet_password.txt) || true
 
-  path=$CONTRACTS_DIR/eosio.contracts/contracts/$2/src
-  echo "Deploying the $2 contract in path: $path"
+  path=$CONTRACTS_DIR/$3/build
+  echo "Deploying the $2 contract from path: $path"
 
   # Move into contracts /src directory
   cd $path
-
-  # Compile the smart contract to wasm and abi files using the EOSIO.CDT (Contract Development Toolkit)
-  # https://github.com/EOSIO/eosio.cdt
-  eosio-cpp -abigen "$2.cpp" -o "$2.wasm" -I ../include
 
   # Set (deploy) the compiled contract to the blockchain
   cleos set contract $1 . "$2.wasm" "$2.abi" -p $1@active
@@ -122,7 +127,10 @@ function deploy_eos_contract {
 function issue_eos_tokens {
   echo "Issuing EOS tokens"
   cleos push action eosio.token create '["eosio", "10000000000.0000 EOS"]' -p eosio.token
+  cleos push action eosio.token create '["eosio", "10000000000.0000 SYS"]' -p eosio.token
+
   cleos push action eosio.token issue '["eosio", "5000000000.0000 EOS", "Half of available supply"]' -p eosio
+  cleos push action eosio.token issue '["eosio", "5000000000.0000 SYS", "Half of available supply"]' -p eosio
 }
 
 # Move into the executable directory
@@ -153,41 +161,63 @@ do
   sleep 1s
 done
 
+# Activate PREACTIVATE_FEATURE
+echo "Activate PREACTIVATE_FEATURE"
+curl -X POST http://127.0.0.1:8888/v1/producer/schedule_protocol_feature_activations -d '{"protocol_features_to_activate": ["0ec7e080177b2c02b278d5088611686b49d739925a92d9bfcacd7fc6b74053bd"]}'
+sleep 2s
+
 echo "Creating accounts and deploying contracts"
 create_wallet
 
-echo "INSTALLING CONTRACTS"
+echo "deploy OLD contract to enable WTMSIG"
+deploy_eos_contract eosio eosio.bios 1.8
+sleep 2s
 
-# eosio.token
-create_account eosio.token $SYSTEM_ACCOUNT_PUBLIC_KEY $SYSTEM_ACCOUNT_PRIVATE_KEY
-deploy_eos_contract eosio.token eosio.token
-issue_eos_tokens
-
-# cyfar.token (dgoods)
+create_account eosio.token $EOSIO_TOKEN_ACCOUNT_PUBLIC_KEY $EOSIO_TOKEN_ACCOUNT_PRIVATE_KEY
+create_account eosio.rex $REX_TOKEN_ACCOUNT_PUBLIC_KEY $REX_TOKEN_ACCOUNT_PRIVATE_KEY
+create_account eosio.ram $RAM_TOKEN_ACCOUNT_PUBLIC_KEY $RAM_TOKEN_ACCOUNT_PRIVATE_KEY
 create_account cyfar.token $TOKEN_ACCOUNT_PUBLIC_KEY $TOKEN_ACCOUNT_PRIVATE_KEY
+create_account cyfar $CYFAR_ACCOUNT_PUBLIC_KEY $CYFAR_ACCOUNT_PRIVATE_KEY
+create_account farmer1 $FARMER_ACCOUNT_PUBLIC_KEY $FARMER_ACCOUNT_PRIVATE_KEY
+create_account donor1 $DONOR_ACCOUNT_PUBLIC_KEY $DONOR_ACCOUNT_PRIVATE_KEY
+
+create_account eosio.bpay EOS6Z1vacRKpPq9f4VpGHwd8eXPKC5W85BCLXDvxZA195JbMUdUvb 5KFtMF12LfN2KFnBr5zJZuHFo8ftzbqn68zUKJ88zoAy73Rd5HE
+create_account eosio.msig EOS53Yv6vp7YPzyJ3DQTGYLv47yTbDEB8Qqwj8m5ujvdxKeaMgCPh 5JnS7RgGkrTwTfKGRqBotq4uRySShLEM8XpeACFWWBTaW2S9mQe
+create_account eosio.names EOS7XA5sCnAQocrh6E6BgDmY2EMspefntWHQykXjuA58kAfXWcvMc 5K9KhXjDTsKCpZc8xCqzEJAAD4wntTxPytykS15vuL3iMgVsrrF
+create_account eosio.ramfee EOS7jxcBymP4byRn4SvgWQqHeSytgDxDZeA4hwsUeJ5UVWNuu2yd4 5Kg6vFtsMfF4tWQDE2dQgTyjhS3jFHS57zVeHHq6iwZ9KY56zf4
+create_account eosio.saving EOS5bQvx5ZTxMaSMZnYSA6avbtWdGpx3bGt3GCA8XAK3vHfyZfqkP 5JN86aMk9xC8ykkXxLc2633fqNtv9w7BmGtF3CPrbtnKwsYbDWr
+create_account eosio.stake EOS8d3F3ovcFuWLvoqtMq14QScZ1STC2FG7inT5mAi1bohvj4H79J 5J9LSYyiWXBjYVG99G6Lu7JuJEAoedMUmLsF9gfgr3mfJcgGHwM
+create_account eosio.vpay EOS6dtHmZhsHSTUtyizWa2UB7cpwjpt9jwC3Jh4pLzx5RGzWShgog 5JGx4Y3TgFtezr3SJ59HR1H9wbbDiQPeYvTs3F5qxGE34KF4n2C
+
+echo "Activate WTMSIG_BLOCK_SIGNATURES"
+cleos -u http://127.0.0.1:8888 push transaction '{"delay_sec":0,"max_cpu_usage_ms":0,"actions":[{"account":"eosio","name":"activate","data":{"feature_digest":"299dcb6af692324b899b39f16d5a530a33062804e41f09dc97e9f156b4476707"},"authorization":[{"actor":"eosio","permission":"active"}]}]}'
+sleep 2s
+
+echo "remove old contract and set 1.9"
+cleos set contract --clear eosio
+sleep 2s
+
+echo "Deploy eosio.bios 1.9"
+deploy_eos_contract eosio eosio.bios 1.9
+sleep 2s
+
+echo "Deploy eosio.system 1.9"
+deploy_eos_contract eosio eosio.system 1.9
+sleep 2s
+
+echo "Deploy eosio.token 1.9"
+deploy_eos_contract eosio.token eosio.token 1.9
+
+issue_eos_tokens
+cleos push action eosio init '["0", "4,SYS"]' -p eosio@active
+
 deploy_contract cyfartoken cyfar.token
 cleos set account permission cyfar.token active --add-code
-
-# publish CYFAR bond token symbol
 cleos push action cyfar.token setconfig '{"symbol": "CYFAR", "version": "1.0"}' -p cyfar.token@active
 
-# cyfar
-create_account cyfar $CYFAR_ACCOUNT_PUBLIC_KEY $CYFAR_ACCOUNT_PRIVATE_KEY
 deploy_contract cyfar cyfar
 cleos set account permission cyfar active --add-code
-
-# farmer
-create_account farmer1 $FARMER_ACCOUNT_PUBLIC_KEY $FARMER_ACCOUNT_PRIVATE_KEY
-
-# donor
-create_account donor1 $DONOR_ACCOUNT_PUBLIC_KEY $DONOR_ACCOUNT_PRIVATE_KEY
 cleos transfer eosio donor1 "1000.0000 EOS"
-
-# publish CYFAR bond token symbol
-cleos push action cyfar.token setconfig '{"symbol": "CYFAR", "version": "1.0"}' -p cyfar.token@active
-
-
-
 
 # ===== create bond token for farmer1::cause1
 cleos push action cyfar.token create '{"issuer": "cyfar.token", "rev_partner": "farmer1", "category": "cause1", "token_name": "bond", "fungible": true, "burnable": true, "sellable": true, "transferable": true,"rev_split": 0.0, "base_uri": "https://cyberfarmers.org/cause1/bond/", "max_issue_days": 0, "max_supply": "1000 CYFAR"}' -p cyfar.token@active

@@ -2,6 +2,7 @@ import React from 'react'
 import { func, bool, shape, oneOfType, instanceOf, object } from 'prop-types'
 import { withUAL } from 'ual-reactjs-renderer'
 import { AnchorUser } from 'ual-anchor'
+import { ScatterUser } from 'ual-scatter'
 import UserInfo from 'components/navigation/UserInfo'
 import LoginButton from 'components/navigation/LoginButton'
 
@@ -11,7 +12,8 @@ class Header extends React.Component {
     static propTypes = {
         ual: shape({
             activeUser: oneOfType([
-                instanceOf(AnchorUser)
+                instanceOf(AnchorUser),
+                instanceOf(ScatterUser)
             ]),
             }),
         routeToLanding: func.isRequired,
@@ -29,7 +31,7 @@ class Header extends React.Component {
     }
 
     render() {
-        const { ual: { activeUser }, routeToLanding, login, userInfo } = this.props
+        const { ual: { activeUser }, routeToLanding, login, userInfo, setUserInfo } = this.props
 
        return (
             <header className="header">
@@ -41,7 +43,7 @@ class Header extends React.Component {
         
                 <div>
                 { activeUser
-                  ? <div className='user-info'><UserInfo userInfo={userInfo} /></div>
+                  ? <div className='user-info'><UserInfo userInfo={userInfo} setUserInfo={setUserInfo} /></div>
                   : <div className='login'><LoginButton login={login} /></div>
                 }
                 </div>

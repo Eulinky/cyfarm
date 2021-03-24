@@ -2,18 +2,21 @@ import { Router, json } from 'express'
 import { Api, JsonRpc } from 'eosjs';
 import { JsSignatureProvider } from 'eosjs/dist/eosjs-jssig'
 
-import { generateCreateTokenTransaction, generateIssueTokenTransaction } from '../utils/transaction'
+import { generateCreateTokenTransaction, generateIssueTokenTransaction, generateCreateAccountTransaction } from '../utils/transaction'
 
 import {PROJECTS} from './staticProjects'
 import {VOUCHERS} from './staticVouchers'
 
 export default () => {
 
-  const privateKeyTokenContract = process.env.MARKET_ACCOUNT_PRIVATE_KEY
+  const privateKeyCyfarContract = process.env.MARKET_ACCOUNT_PRIVATE_KEY
+  const privateKeySystemAccount = process.env.SYSTEM_ACCOUNT_PRIVATE_KEY
+  const privateKeyTokenContract = process.env.TOKEN_ACCOUNT_PRIVATE_KEY
+  
   const api = Router()
   const fetch = require('node-fetch')
 
-  const signatureProvider = new JsSignatureProvider([privateKeyTokenContract])
+  const signatureProvider = new JsSignatureProvider([privateKeyTokenContract, privateKeyCyfarContract, privateKeySystemAccount])
   const rpc = new JsonRpc(`${process.env.REACT_APP_RPC_PROTOCOL}://${process.env.API_RPC_HOST}:${process.env.REACT_APP_RPC_PORT}`, { fetch })
   const eosApi = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() })
   const defaultConfig = {
@@ -62,6 +65,7 @@ export default () => {
   api.post('/compToken', json(), async (req, resp) => {
     const payload = req.body
 
+    // TODO: put into single transaction
     // create project specific tokens
     const createTokenTransaction = generateCreateTokenTransaction(payload.accountName, payload.projectId, payload.token_name, payload.count + " CYFAR", false)
     const createResult = await eosApi.transact(createTokenTransaction, defaultConfig)
@@ -155,6 +159,28 @@ export default () => {
 
     resp.json(projects)
   })
+
+
+  api.post('/account', json(), async (req, resp) => {
+    const payload = req.body
+
+    try {
+      const creatAccountTransaction = generateCreateAccountTransaction(payload.accountName, payload.ownerKey, payload.activeKey)     
+      await eosApi.transact(creatAccountTransaction, defaultConfig)
+
+      resp.json({
+        status: 'ok',
+      })
+    }
+    catch (err) {
+      resp.json({
+        status: 'error',
+        message: err.json.error.what
+      })
+    }
+    
+  })
+
 
   api.get('/vouchers', async (req, resp) => {
     resp.json(VOUCHERS)

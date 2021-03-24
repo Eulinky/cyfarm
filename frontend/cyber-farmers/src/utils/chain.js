@@ -1,9 +1,13 @@
 import { JsonRpc } from 'eosjs';
+import { AnchorUser } from 'ual-anchor';
+import { ScatterUser } from 'ual-scatter';
 import {VOUCHERS} from '../api/staticVouchers'
 
 const getChainUrl = () => `${process.env.REACT_APP_RPC_PROTOCOL}://${process.env.REACT_APP_RPC_HOST}:${process.env.REACT_APP_RPC_PORT}`
 
-export const getUserInfo = async (accountName) => {
+export const getUserInfo = async (activeUser) => {
+
+    const accountName = await activeUser.getAccountName();
 
     const rpc = new JsonRpc(getChainUrl())
 
@@ -50,10 +54,27 @@ export const getUserInfo = async (accountName) => {
         good.voucher = VOUCHERS.find(v => v.projectId == good.category)
     });
 
+    let accountInfo = null
+    try {
+        accountInfo = await rpc.get_account(accountName)
+    }
+    catch(err) {}
+
+    let userKeys = []
+    if(activeUser instanceof ScatterUser) {
+        userKeys = await activeUser.getKeys()
+    }
+    else if (activeUser instanceof AnchorUser) {
+        // Anchor does not implement getKeys atm
+    }      
+
     // create result
     const userInfo = {
         accountName,
-        eosBalance: eos != null ? eos.balance : "No Data",
+        accountInfo,
+        keys: userKeys,
+        accountExists: accountInfo != null,
+        eosBalance: eos != null ? eos.balance : null,
         bondTokens: tokenInfo,
         goods: user_dgoods,
         donations: donations.rows

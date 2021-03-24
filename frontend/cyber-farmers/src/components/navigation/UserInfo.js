@@ -42,11 +42,11 @@ class UserInfo extends React.Component {
 
   renderDropdown = () => {
     const { logout } = this.context
-    const { userInfo } = this.props
+    const { userInfo, setUserInfo } = this.props
 
     return (
       <div className='user-info-dropdown-content'>
-        <UserDropdown logout={logout} userInfo={userInfo} />
+        <UserDropdown logout={logout} userInfo={userInfo} setUserInfo={setUserInfo} />
       </div>
     )
   }

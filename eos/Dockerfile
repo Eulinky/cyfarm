@@ -13,14 +13,11 @@ RUN wget https://github.com/eosio/eos/releases/download/v2.0.9/eosio_2.0.9-1-ubu
 RUN apt-get update && sudo apt install -y ./eosio_2.0.9-1-ubuntu-18.04_amd64.deb
 RUN rm ./eosio_2.0.9-1-ubuntu-18.04_amd64.deb
 
-RUN echo "COPY EOSIO.CONTRACTS"
 RUN mkdir -p "/opt/eosio/bin/contracts"
+RUN echo "COPY EOSIO.CONTRACTS"
 
-RUN wget https://github.com/EOSIO/eosio.contracts/archive/v1.9.2.tar.gz
-RUN mkdir -p /eosio.contracts
-RUN tar xvzf ./v1.9.2.tar.gz -C /eosio.contracts
-RUN mv /eosio.contracts/eosio.contracts-1.9.2 /opt/eosio/bin/contracts
-RUN mv /opt/eosio/bin/contracts/eosio.contracts-1.9.2 /opt/eosio/bin/contracts/eosio.contracts
+COPY ./eosio.contracts /opt/eosio/bin/contracts
+
 
 RUN echo "COPY APP CONTRACTS"
 COPY . /opt/eosio/bin
@@ -29,5 +26,5 @@ RUN mkdir -p "/opt/eosio/bin/config-dir"
 
 RUN /bin/bash /opt/eosio/bin/scripts/deploy_contracts.sh
 
-CMD ["-e", "-p", "eosio", "-d", "/root/.local/share", "--plugin", "eosio::producer_plugin", "--plugin", "eosio::chain_api_plugin", "--plugin", "eosio::http_plugin", "--http-server-address=0.0.0.0:8888", "--access-control-allow-origin=*", "--contracts-console", "--http-validate-host=false", "--verbose-http-errors", "--max-transaction-time=100"]
+CMD ["-e", "-p", "eosio", "-d", "/root/.local/share", "--plugin", "eosio::producer_plugin", "--plugin", "eosio::producer_api_plugin", "--plugin", "eosio::chain_api_plugin", "--plugin", "eosio::http_plugin", "--http-server-address=0.0.0.0:8888", "--access-control-allow-origin=*", "--contracts-console", "--http-validate-host=false", "--verbose-http-errors", "--max-transaction-time=100"]
 ENTRYPOINT [ "nodeos" ]

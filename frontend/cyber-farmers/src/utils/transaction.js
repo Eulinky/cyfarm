@@ -107,4 +107,67 @@ export const generateListRedeemTransaction = (account, dgood_id, amount) => ({
   }]
 })
 
-export const transactionConfig = { broadcast: true, expireSeconds: 300 }
+export const generateCreateAccountTransaction = (accountName, ownKey, activeKey) => ({
+  actions: [
+    {
+      account: 'eosio',
+      name: 'newaccount',
+      authorization: [{
+        actor: 'eosio',
+        permission: 'active',
+      }],
+      data: {
+        creator: 'eosio',
+        name: accountName,
+        owner: {
+          threshold: 1,
+          keys: [{
+            key: ownKey,
+            weight: 1
+          }],
+          accounts: [],
+          waits: []
+        },
+        active: {
+          threshold: 1,
+          keys: [{
+            key: activeKey,
+            weight: 1
+          }],
+          accounts: [],
+          waits: []
+        },
+      }
+    },
+    {
+      account: 'eosio',
+      name: 'buyrambytes',
+      authorization: [{
+        actor: 'eosio',
+        permission: 'active',
+      }],
+      data: {
+        payer: 'eosio',
+        receiver: accountName,
+        bytes: 8192,
+      },
+    },
+    {
+      account: 'eosio',
+      name: 'delegatebw',
+      authorization: [{
+        actor: 'eosio',
+        permission: 'active',
+      }],
+      data: {
+        from: 'eosio',
+        receiver: accountName,
+        stake_net_quantity: '1.0000 SYS',
+        stake_cpu_quantity: '1.0000 SYS',
+        transfer: false,
+      }
+    }
+  ]
+})
+
+export const transactionConfig = { broadcast: true, expireSeconds: 30, blocksBehind: 3 }

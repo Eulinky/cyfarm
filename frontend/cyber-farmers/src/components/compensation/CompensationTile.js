@@ -88,7 +88,7 @@ class CompensationTile  extends React.Component {
 
                 await activeUser.signTransaction(transaction, transactionConfig)
 
-                setUserInfo(accountName)
+                setUserInfo(activeUser)
                 projectChanged(project)
             } 
             catch (err) {

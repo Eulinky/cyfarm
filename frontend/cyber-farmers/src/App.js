@@ -43,7 +43,7 @@ class App extends React.Component {
       const accountName = await activeUser.getAccountName()
 
       // get user info from chain
-      await this.setUserInfo(accountName)
+      await this.setUserInfo(activeUser)
     }
 
     if (error && (prevError ? error.message !== prevError.message : true)) {
@@ -93,9 +93,9 @@ class App extends React.Component {
     });
   }
 
-  setUserInfo = async (accountName) => {
+  setUserInfo = async (activeUser) => {
     // get user info from chain
-    const userInfo = await getUserInfo(accountName)
+    const userInfo = await getUserInfo(activeUser)
 
     this.setState({ userInfo })
   }
@@ -135,7 +135,7 @@ class App extends React.Component {
     return (
       <div className='app-container'>
         { showNotificationBar && <NotificationBar hideNotificationBar={hideNotificationBar} error={error} /> }
-        <Header routeToLanding={routeToLanding} login={login} userInfo={userInfo} />
+        <Header routeToLanding={routeToLanding} login={login} userInfo={userInfo} setUserInfo={this.setUserInfo} />
         { showProject ?
           (
             <ProjectPage

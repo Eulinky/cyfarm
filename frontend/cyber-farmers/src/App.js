@@ -31,7 +31,7 @@ class App extends React.Component {
     showProject: false,
     showNotificationBar: true,
     error: null,
-    userInfo: { accountName: '', eosBalance: '', bondTokens: [] },
+    userInfo: { accountName: '', eosBalance: null, bondTokens: [], donations: [], goods: [], keys: [] },
     projects: []
   }
 

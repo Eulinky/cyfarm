@@ -91,7 +91,6 @@ class DonationTile  extends React.Component {
                 <div className="donate">
 
                     <h2>{project.supportSlogan}</h2>
-                    <p style={{fontSize: 'small', color: 'red', textAlign: 'center'}}>TODO: Restrict to non-project creators (aka donors)</p>
 
                     {this.renderDonationText()}
 

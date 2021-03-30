@@ -147,7 +147,6 @@ class CompensationTile  extends React.Component {
                 <div className="donate">
 
                     <h2>Your Project Status</h2>
-                    <p style={{fontSize: 'small', color: 'red', textAlign: 'center'}}>TODO: Restrict to project creators</p>
                     <div className="donate__wrap">
                         <div className="stats_box">
                             <p className="stats_header">You have collected</p>

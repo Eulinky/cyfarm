@@ -1,20 +1,31 @@
 .stats_box {
    display: flexbox;
    width: 300px;
-   background-color: white;
-   border: 1px solid;
+   min-height: 220px;
+   background-color: #64c7c9;
+   border: 1px solid #666;
+   border-radius: 20px;
    margin: 5px;
    padding: 5px;
+   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
    .stats_header {
+      color: #fff;
       font-size: medium;
    }
 
    .stats_text {
-      font-size: larger;
+      font-size: 30px;
+      color: #fff;
    }
 
    .stats_details {
       font-size: small;
+      color: #fff;
+      margin-bottom: 10px;
+   }
+
+   .stats_box .btn {
+      margin: 20px;
    }

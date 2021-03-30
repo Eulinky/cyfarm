@@ -2,12 +2,16 @@
   display: grid;
   align-items: center;
   grid-gap: 0 .5rem;
-  grid-template-columns: 270px 50px;
+  grid-template-columns: 150px 50px;
   grid-template-areas:
    'prefix   options'
    'name     options'
    'dropdown dropdown';
   margin-right: 50px;
+  border: 0px solid #888;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgb(219, 219, 219);
   
   &.user-info-hide-dropdown {
     grid-template-columns: 1fr;

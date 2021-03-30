@@ -109,7 +109,7 @@ class CompensationTile  extends React.Component {
 
                      {Object.getOwnPropertyNames(tokensByName).map(tokenName => {
                          return (
-                            <div key={tokenName}>
+                            <div className="availableCompBox" key={tokenName}>
                                 <div className="stats_text">{ tokensByName[tokenName].length } x {tokenName}</div>
                                 <div className="stats_details">{ tokensByName[tokenName][0].voucher.title }</div>
                                 <div className="comp__wrap">
@@ -130,7 +130,7 @@ class CompensationTile  extends React.Component {
                     })}
                            
                     <button className="btn btn--primary" onClick={this.onCreateCompensation}>
-                        Create Compensation 
+                        New Compensation 
                     </button>
                     
                 </div>

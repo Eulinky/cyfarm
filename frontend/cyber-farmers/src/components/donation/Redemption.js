@@ -94,7 +94,7 @@ class Redemption extends React.Component {
                                 <div className="voucher_title">{tokensByName[tokenName][0].voucher.title}</div>
                                 <div className="voucher_details">{tokensByName[tokenName][0].voucher.details}</div>
                                 <div className="voucher_price">{tokensByName[tokenName][0].amount}</div>
-                                <button className="btn btn--secondary" onClick={() => this.onRedeem(tokensByName[tokenName][0])} disabled={userBondTokens == null}>
+                                <button className="btn btn--primary" onClick={() => this.onRedeem(tokensByName[tokenName][0])} disabled={userBondTokens == null}>
                                     Redeem
                                 </button>
                             </div>

@@ -32,6 +32,11 @@ class ProjectPage extends React.Component {
         const { routeToLanding, login, displayError, userInfo, setUserInfo } = this.props
         const { displayProject } = this.state
 
+        console.log("displayProject")
+        console.log(displayProject)
+
+        console.log("userInfo")
+        console.log(userInfo)
         return (
             <div id="scroll-to-top">
                 
@@ -49,22 +54,6 @@ class ProjectPage extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                <DonationTile login={login} 
-                              displayError={displayError} 
-                              project={displayProject} 
-                              userInfo={userInfo} 
-                              setUserInfo={setUserInfo} 
-                              projectChanged={project => this.projectChanged(this.props, project)} />
-                <br />
-                <CompensationTile login={login} 
-                                  displayError={displayError}
-                                  project={displayProject}
-                                  userInfo={userInfo}
-                                  setUserInfo={setUserInfo} 
-                                  projectChanged={project => this.projectChanged(this.props, project)} />
-
-                <br />
                 <div className="text--title">
                     <div className="text--title__inner row__1200">
                         <div className="text--title__title">
@@ -77,6 +66,25 @@ class ProjectPage extends React.Component {
                         </div>
                     </div>
                 </div>
+                <br />
+                {displayProject.partner != userInfo.accountName ? 
+                    <DonationTile login={login} 
+                              displayError={displayError} 
+                              project={displayProject} 
+                              userInfo={userInfo} 
+                              setUserInfo={setUserInfo} 
+                              projectChanged={project => this.projectChanged(this.props, project)} />
+                    :
+                    <CompensationTile login={login} 
+                                  displayError={displayError}
+                                  project={displayProject}
+                                  userInfo={userInfo}
+                                  setUserInfo={setUserInfo} 
+                                  projectChanged={project => this.projectChanged(this.props, project)} />
+                }
+
+                
+                
             </div>)
     }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { func, array } from 'prop-types'
+import { func, array, object } from 'prop-types'
 import { withUAL, UALContext } from 'ual-reactjs-renderer'
 
 class ProjectList extends React.Component {
@@ -8,7 +8,8 @@ class ProjectList extends React.Component {
         login: func.isRequired,
         projects: array.isRequired,
         displayError: func.isRequired,
-        routeToProject: func.isRequired
+        routeToProject: func.isRequired,
+        userInfo: object.isRequired
     }
 
     componentDidMount() {
@@ -60,8 +61,10 @@ class ProjectList extends React.Component {
       }
 
     renderCreateButton = (project) => {
+      const { userInfo } = this.props
+
       // do not render if project has been created on the blockchain
-      return !project.bondTokenInfo ? (
+      return userInfo.accountName == project.partner && !project.bondTokenInfo ? (
               <button className="btn btn--secondary" onClick={() => this.onCreate(project)}>
               Create 
               </button>) : <div />

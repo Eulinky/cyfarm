@@ -155,6 +155,7 @@ class App extends React.Component {
               routeToProject={routeToProject}
               login={login}
               displayError={this.displayError}
+              userInfo={userInfo}
             />
         }         
       </div>

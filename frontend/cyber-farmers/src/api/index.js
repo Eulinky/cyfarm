@@ -139,10 +139,8 @@ export default () => {
         
         return mg
       })
-
       
-      
-      p.redeemableCompTokens = market_goods_by_cause
+      p.redeemableCompTokens = market_goods_by_cause.filter(mg => mg.projectId == p.id)
       p.redeemableAmount = 0
       market_goods_by_cause.map(row => {
         p.redeemableAmount += row.dgood_ids.length * amountOf(row.amount)
@@ -151,7 +149,7 @@ export default () => {
       // redeemed amount from the partner's account
       let partnerAccounts = await get_accounts(p.partner);
       let partnerBonds = partnerAccounts.rows.find(acc => acc.category == p.id && acc.token_name == "bond");
-      p.redeemedAmount = 0
+      p.redeemedAmount = "0"
       if(partnerBonds) {
         p.redeemedAmount = partnerBonds.amount
       }

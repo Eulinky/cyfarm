@@ -4,12 +4,13 @@ An 2021 EOSIO hackathon project about community donations to businesses on the E
 ## Description
 The solution provides a web frontend that allows users to donate EOS to businesses such as farmers in exchange for fungible or non-fungible bond tokens which provide for a later compensation process. For demonstration purposes a private EOS blockhain is used, so no real EOS tokens are transferred.
 
-## Bond tokens
-A detailed problem description and why bond tokens / assets can help to solve it follows soon.
+## CYFAR tokens
+For every placed donation a donor gets back (fungible) CYFAR tokens in the same amount, locked to the specific project.
+A business can issue non-fungible tokens (aka vouchers) for a specific project acting as a compensation offer to donors.
+Donors can use their CYFAR tokens to purchase offers. In the future, these tokens can be transferred and used to perform other activities such as voting or promoting for example.
 
 ## Cloud installation
-The current development version can be found at https://cyfar-fe-3mtic3xe5q-ez.a.run.app/
-Updated by Alex: https://www.cyberfarmer.org
+The current development version can be found at https://www.cyberfarmer.org
 
 ## Requirements
 In order to use the app you need

@@ -98,7 +98,7 @@ class DonationTile  extends React.Component {
 
                         <select className="donate__dropdown" value={donation} onChange={this.handleChange}>
                             <option value="5.0000 EOS">5 EOS</option>
-                            <option value="10.000 EOS">10 EOS</option>
+                            <option value="10.0000 EOS">10 EOS</option>
                             <option value="20.0000 EOS">20 EOS</option>
                             <option value="50.0000 EOS">50 EOS</option>
                             <option value="100.0000 EOS">100 EOS</option>

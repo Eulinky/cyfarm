@@ -138,9 +138,10 @@ class CompensationTile  extends React.Component {
 
     render() {
         const { project } = this.props
+        
         const receivedDonations = project.bondTokenInfo ? amountOf(project.bondTokenInfo.issued_supply) - amountOf(project.bondTokenInfo.available_supply) : "0"
         const requiredDonations = project.bondTokenInfo ? amountOf(project.bondTokenInfo.issued_supply) : "0"
-        const missingCompAmount = project.requiredAmount - amountOf(project.redeemedAmount)
+        const missingCompAmount = receivedDonations - amountOf(project.redeemedAmount)
 
         return (
             <div className="row__1200">
